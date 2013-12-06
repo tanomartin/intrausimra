@@ -1,7 +1,20 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+	
+include ("conexion.php");
+$empcod = $_GET['empcod'];
+$cuit = $_GET['cuit'];
+$cuil = $_GET['cuil'];
+$sql0 = "select * from empresa e where e.delcod = $delcod and e.empcod = $empcod";
+$result0 = mysql_query($sql0,$db); 
+$row0 = mysql_fetch_array($result0);
+
+mysql_select_db('ospimrem_aplicativo');
+$sql = "select e.*, c.descri as catego, p.descripcion as provi from empleados e, empresa a, categorias c, provincia p where e.nrcuit = '$cuit' and e.nrcuil = '$cuil' and e.nrcuit = a.nrcuit and a.rramaa = c.codram and e.catego = c.codcat and e.provin = p.id";
+$result = mysql_query($sql,$db); 
+$row=mysql_fetch_array($result);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,47 +36,14 @@ if($_SESSION['delcod'] == null)
 -->
 </style>
 </head>
-<?
-include ("conexion.php");
-$sql0 = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
-$result0 = mysql_db_query("ospimrem_intranet",$sql0,$db); 
-$row0 = mysql_fetch_array($result0);
-
-$sql = "select * from empleados where nrcuit = '$cuit' and nrcuil = '$cuil'";
-$result = mysql_db_query("ospimrem_aplicativo",$sql,$db); 
-$row=mysql_fetch_array($result);
-$cate = $row['catego'];
-$prov = $row['provin'];
-
-$sql2 = "select * from empresa where nrcuit = '$cuit'";
-$result2 = mysql_db_query("ospimrem_aplicativo",$sql2,$db); 
-$row2=mysql_fetch_array($result2);
-$rama = $row2['rramaa'];
-
-$sql3 = "select * from categorias where codram = '$rama' and codcat = '$cate'";
-$result3 = mysql_db_query("ospimrem_aplicativo",$sql3,$db); 
-$row3=mysql_fetch_array($result3);
-
-$sql4 = "select * from provin where codigo = '$prov'";
-$result4 = mysql_db_query("ospimrem_intranet",$sql4,$db); 
-$row4=mysql_fetch_array($result4);
-
-
-?>
-
-
-<body onUnload="logout.php">
+<body>
 <form id="form1" name="form1" method="post" action="empleados.php">
 <table width="546" border="0">
   <tr>
     <th width="44" scope="row"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="44" height="44" /></span></th>
-    <th width="218" scope="row"><div align="left"><? print ($row0['nombre']);?></div></th>
+    <th width="218" scope="row"><div align="left"><?php print ($row0['nombre']);?></div></th>
     <td width="270"><div align="right"><font size="3" face="Papyrus">
-      <?
- 					print ($row['nombre']);
-					print ("   ");
-					print ($row['apelli']);
-					?>
+      <?php print ($row['nombre']."   ".$row['apelli']);?>
     </font></div></td>
   </tr>
 </table>
@@ -71,65 +51,43 @@ $row4=mysql_fetch_array($result4);
 <table width="548" border="1">
   <tr>
     <th width="167" scope="row"><div align="left">Documento</div></th>
-    <td width="365"><?
- 						print ($row['tipdoc']);
-						print (": ");
-						print ($row['nrodoc']);
-					?></td>
+    <td width="365"><?php print ($row['tipdoc'].": ".$row['nrodoc']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Domicilio</div></th>
-    <td><?
- 						print ($row['direcc']);
-					?></td>
+    <td><?php print ($row['direcc']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Localidad</div></th>
-    <td><?
- 						print ($row['locale']);
-					?></td>
+    <td><?php print ($row['locale']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Provincia</div></th>
-    <td><?
- 						print ($row4['nombre']);
-					?></td>
+    <td><?php print ($row['provi']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">C.P.</div></th>
-    <td><?
- 						print ($row['copole']);
-					?></td>
+    <td><?php print ($row['copole']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Fecha Nacimiento </div></th>
-    <td><?
- 						print ($row['fecnac']);
-					?></td>
+    <td><?php print ($row['fecnac']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">CUIL</div></th>
-    <td><?
- 						print ($row['nrcuil']);
-					?></td>
+    <td><?php print ($row['nrcuil']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Categoria</div></th>
-    <td><?
- 						print ($row3['descri']);
-					?></td>
+    <td><?php print ($row['catego']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Feche de ingreso </div></th>
-    <td><?
- 						print ($row['fecing']);
-					?></td>
+    <td><?php print ($row['fecing']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">En Actividad</div></th>
-    <td><?
- 						print ($row['activo']);
-					?></td>
+    <td><?php print ($row['activo']);?></td>
   </tr>
 </table>
 
@@ -146,9 +104,9 @@ $row4=mysql_fetch_array($result4);
 	<td width="111"><div align="center"><strong><font size="1" face="Verdana">Fecha de Nacimiento </font></strong></div></td>
 </tr>
 <p>
-<?
+<?php 
 $sql1 = "select * from familia where nrcuit = '$cuit' and nrcuil = '$cuil'";
-$result1 = mysql_db_query("ospimrem_aplicativo",$sql1,$db); 
+$result1 = mysql_query($sql1,$db); 
 while ($row1=mysql_fetch_array($result1)) {
 	print ("<td width=111><font face=Verdana size=1>".$row1['nombre']."</font></td>");
 	print ("<td width=111><font face=Verdana size=1>".$row1['apelli']."</font></td>");
@@ -165,11 +123,10 @@ while ($row1=mysql_fetch_array($result1)) {
 
 <table width="1024" border="0">
   <tr>
-    <th width="304" scope="row"><div align="left" class="Estilo4"><font face="Verdana">Para volver a la nomina Bot&oacute;n atras del explorador </font></div></th>
-    <th width="707" scope="row"><div align="right">
+    <th scope="row"><div align="right">
       <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
     </div></th>
-  </tr>
+    </tr>
 </table>
 </form>
 </body>

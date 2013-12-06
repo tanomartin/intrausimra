@@ -1,7 +1,18 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+include ("conexion.php");
+
+if (isset($_POST['orden'])) {
+	$orden = $_POST['orden'];
+} else {
+	$orden = "empcod";
+}
+
+$dele = $_GET['dele'];
+$sql = "select * from empresa where delcod = $dele order by $orden";
+$result = mysql_query($sql,$db);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -27,47 +38,46 @@ body {
 -->
 </style>
 </head>
+<script>
+function mypopup(dire, empre) {
+	titulo = "Info Empresa " + empre;
+    mywindow = window.open(dire, titulo, "location=1, width=600, height=350, top=30, left=40, resizable=0");
+}
+</script>
+<body>
 
-<body onUnload="logout.php">
-
-<?
-	include ("conexion.php");
-	$orden= $_POST['orden'];
-	$sql = "select * from empresa where delcod = '$dele' order by '$orden'";
-	$result = mysql_db_query("ospimrem_intranet",$sql,$db);
-?>
-
-<form id="form1" name="form1" method="post" action="empresasControl.php?dele=<?=$dele?>">
+<form id="form1" name="form1" method="post" action="empresasControl.php?dele=<?php echo $dele?>">
 <table width="1025" border="0">
   <tr>
-    <td width="69" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="49" height="49" /></span></div></td>
+    <td width="61" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="49" height="49" /></span></div></td>
     <td colspan="2"> <div align="left">
       <p class="Estilo3">EMPRESAS</p>
     </div></td>
-    <td width="530"></p>
+    <td width="313"></p>
       <div align="right">
-      <div align="right" class="Estilo3"><? print ("Delegación: "); print ($dele);?></div></td>
+      <div align="right" class="Estilo3"><?php print ("Delegación: "."$dele");?></div></td>
   </tr>
+  
   <tr>
-    <td colspan="4" scope="row"><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
-  </tr>
-  <tr>
-    <td>Seleccione el orden: </td>
-    <td width="99"><select name="orden" id="orden">
+    <td colspan="2">
+	  <div align="left"><b><font face="Verdana" size="2">
+	    <input type="button" name="back" value="VOLVER" onclick="location.href='menuControl.php'"/>
+      </font></b></div></td>
+    <td width="381"><div align="center">Seleccione el orden:
+      <select name="orden" id="orden">
         <option value="nombre" >Nombre</option>
         <option value="empcod">C&oacute;digo</option>
         <option value="nrcuit">C.U.I.T.</option>
-    </select></td>
-    <td width="309"><label><b><font face="Verdana" size="2">
-      <input name="back2" type="submit" id="back2" value="LISTAR" />
-    </font></b>
-
-    </label></td>
-    <td width="530">&nbsp;</td>
+        </select>
+        <b><font face="Verdana" size="2">
+          <input name="back2" type="submit" id="back2" value="LISTAR" />
+        </font></b></div></td>
+    <td>
+      <div align="right">
+        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+        </div></td>
   </tr>
 </table>
-
-
 <table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
   <tr>
     <td width="62"><div align="center"><strong><font size="1" face="Verdana">Delegaci&oacute;n</font></strong></div></td>
@@ -79,33 +89,21 @@ body {
     <td width="119"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Cuentas</font> </font></strong></div></td>
   </tr>
   <p>
-<?
+<?php
 while ($row=mysql_fetch_array($result)) {
-print ("<td width=62><font face=Verdana size=1>".$row['delcod']."</font></td>");
-print ("<td width=56><font face=Verdana size=1>".$row['empcod']."</font></td>");
-print ("<td width=331><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-print ("<td width=161><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-print ("<td width=138><div align=center><font face=Verdana size=1><a href=infoTotalControl.php?empcod=".$row['empcod']."&del=".$row['delcod'].">".FICHA."</font></div></td>");
-print ("<td width=114><div align=center><font face=Verdana size=1><a href=empleadosControl.php?empcod=".$row['empcod']."&del=".$row['delcod'].">".NOMINA."</font></div></td>");
-print ("<td width=119><div align=center><font face=Verdana size=1><a href=estado_cuentaControl.php?empcod=".$row['empcod']."&del=".$row['delcod'].">".CUENTA."</font></div></td>");
-print ("</tr>");
+	print ("<td width=62><font face=Verdana size=1>".$row['delcod']."</font></td>");
+	print ("<td width=56><font face=Verdana size=1>".$row['empcod']."</font></td>");
+	print ("<td width=331><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
+	print ("<td width=161><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
+	print ("<td width=138><div align=center><font face=Verdana size=1><a href=javascript:mypopup('infoTotalControl.php?dele=".$row['delcod']."&empcod=".$row['empcod']."',".$row['empcod'].")>".FICHA."</a></font></div></td>");
+	print ("<td width=114><div align=center><font face=Verdana size=1><a href=empleadosControl.php?empcod=".$row['empcod']."&dele=".$row['delcod'].">".NOMINA."</a></font></div></td>");
+	print ("<td width=119><div align=center><font face=Verdana size=1><a href=estado_cuentaControl.php?empcod=".$row['empcod']."&dele=".$row['delcod'].">".CUENTA."</a></font></div></td>");
+	print ("</tr>");
 }
 ?>
-        </div>
-  </table>
+ </table>
 
 </form>
-<form id="form2" name="form2" method="post" action="menuControl.php">
-<table width="1026" border="0">
-    <tr>
-      <th width="536" scope="row"><div align="left"><b><font face="Verdana" size="2">
-        <input name="back" type="submit" id="back" value="VOLVER" />
-     </font></b></div></th>
-      <th width="480" scope="row"><div align="right">
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div></th>
-    </tr>
-  </table>
-</form>
+
 </body>
 </html>

@@ -1,7 +1,16 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+
+include ("conexion.php");
+if (isset($_POST['orden'])) {
+	$orden = $_POST['orden'];
+} else {
+	$orden = "empcod";
+}
+$sql = "select * from empresa where delcod = $delcod order by $orden";
+$result = mysql_query($sql,$db); 
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -27,42 +36,48 @@ body {
 -->
 </style>
 </head>
+<script>
 
-<?
-include ("conexion.php");
-$sql = "select * from empresa where delcod = $delcod order by '$orden'";
-$result = mysql_db_query("ospimrem_intranet",$sql,$db); 
-?>
+function mypopup(dire, empre) {
+	titulo = "Info Empresa " + empre;
+    mywindow = window.open(dire, titulo, "location=1, width=600, height=350, top=30, left=40, resizable=0");
+}
 
+</script>
 
-<body onUnload="logout.php">
+<body>
 <form id="form1" name="form1" method="post" action="empresas.php">
 <table width="1025" border="0">
   <tr>
-    <td scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
-    <td colspan="2" scope="row"><div align="left">
+    <td width="75" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
+    <td colspan="3" scope="row"><div align="left">
       <p class="Estilo3">EMPRESAS</p>
     </div></td>
-    <td width="635">&nbsp;</td>
+    <td width="298"><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
   </tr>
+  
   <tr>
-    <td colspan="4" scope="row"><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
-  </tr>
-  <tr>
-    <td width="79">Seleccione el orden: </td>
-    <td width="93"><select name="orden" id="orden">
-        <option value="nombre" >Nombre</option>
-        <option value="empcod">C&oacute;digo</option>
-        <option value="nrcuit">C.U.I.T.</option>
-    </select></td>
-    <td width="200"><label><b><font face="Verdana" size="2">
-      <input name="back2" type="submit" id="back2" value="LISTAR" />
-    </font></b> </label></td>
-    <td scope="row">&nbsp;</td>
+    <td colspan="3"><div align="left"><b><font face="Verdana" size="2">
+      <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
+    </font></b></div></td>
+    <td width="405">
+      
+        <div align="center">Seleccione el orden:
+
+          <select name="orden" id="orden">
+            <option value="nombre" >Nombre</option>
+            <option value="empcod">C&oacute;digo</option>
+            <option value="nrcuit">C.U.I.T.</option>
+          </select>
+          <b><font face="Verdana" size="2">
+          <input name="back2" type="submit" id="back2" value="LISTAR" />
+        </font></b></div>
+      <div align="center"></div></td>
+    <td><div align="right">
+      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+    </div></td>
   </tr>
 </table>
-
-
 <table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
   <tr>
     <td width="111"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
@@ -72,34 +87,18 @@ $result = mysql_db_query("ospimrem_intranet",$sql,$db);
 	<td width="150"><div align="center"><strong><font size="1" face="Verdana">Nómina de Empleados </font></strong></div></td>
   </tr>
   <p>
-<?
+<?php
 while ($row=mysql_fetch_array($result)) {
-print ("<td width=111><font face=Verdana size=1>".$row['empcod']."</font></td>");
-print ("<td width=363><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-print ("<td width=250><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-print ("<td width=150><div align=center><font face=Verdana size=1><a href=infoTotal.php?empcod=".$row['empcod'].">".FICHA."</font></div></td>");
-print ("<td width=150><div align=center><font face=Verdana size=1><a href=empleados.php?empcod=".$row['empcod'].">".NOMINA."</font></div></td>");
-print ("</tr>");
+	print ("<td width=111><font face=Verdana size=1>".$row['empcod']."</font></td>");
+	print ("<td width=363><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
+	print ("<td width=250><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
+	print ("<td width=150><div align=center><font face=Verdana size=1><a href=javascript:mypopup('infoTotal.php?empcod=".$row['empcod']."',".$row['empcod'].")>".FICHA."</a></font></div></td>");
+	print ("<td width=150><div align=center><font face=Verdana size=1><a href=empleados.php?empcod=".$row['empcod'].">".NOMINA."</a></font></div></td>");
+	print ("</tr>");
 }
 ?>
 </p>
 </table>
-
 </form>
-
-</form>
-<form id="form2" name="form2" method="post" action="menu.php">
-<table width="1026" border="0">
-    <tr>
-      <th width="536" scope="row"><div align="left"><b><font face="Verdana" size="2">
-        <input name="back" type="submit" id="back" value="VOLVER" />
-     </font></b></div></th>
-      <th width="480" scope="row"><div align="right">
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div></th>
-    </tr>
-  </table>
-</form>
-
 </body>
 </html>

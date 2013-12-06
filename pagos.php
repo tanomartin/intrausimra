@@ -1,7 +1,15 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+
+include ("conexion.php");
+$empcod = $_GET['empcod'];
+$ano = $_GET['ano'];
+$mes = $_GET['mes'];
+$sql = "select * from empresa where delcod = $delcod and empcod = $empcod";
+$result = mysql_query($sql,$db); 
+$row = mysql_fetch_array($result);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,44 +33,39 @@ if($_SESSION['delcod'] == null)
 -->
 </style>
 </head>
-
+<script>
+function mypopup(dire) {
+    mywindow = window.open(dire, "Info DDJJ", "location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1");
+}
+</script>
 <body>
-<?
-include ("conexion.php");
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
-$result = mysql_db_query("ospimrem_intranet",$sql,$db); 
-$row = mysql_fetch_array($result);
-?>
-
-<table width="1023" border="0">
+<table width="800" border="0">
   <tr>
     <td width="57" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></span></div></td>
     <td width="436"><div align="left">
       <p class="Estilo3">Detalle de Pago </p>
     </div></td>
     <td width="516"><div align="right" class="Estilo3"><font size="3" face="Papyrus">
-      <?
- 					print ($row['nombre']);
-	?>
+      <?php print ($row['nombre']);?>
     </font></div></td>
   </tr>
   <tr>
     <td colspan="3" scope="row"><div align="right" class="Estilo5">U.S.I.M.R.A. </div></td>
   </tr>
 </table>
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table width="800" border="1" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="140"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo</font></strong></div></td>
-    <td width="192"><div align="center"><strong><font size="1" face="Verdana">Fecha de Deposito </font></strong></div></td>
-    <td width="182"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Total Depositado </font> </font></strong></div></td>
-    <td width="154"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Sistema de Pago </font> </font></strong></div></td>
-    <td width="325"><div align="center"><strong><font size="1" face="Verdana"><font size="1">C&oacute;digo de Barra </font> </font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo</font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana">Fecha de Deposito </font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana"><font size="1">Total Depositado </font> </font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana"><font size="1">Sistema de Pago </font> </font></strong></div></td>
+    <td><div align="center"><strong><font size="1" face="Verdana"><font size="1">C&oacute;digo de Barra </font> </font></strong></div></td>
   </tr>
   <p>
   
-<?
-$sql1 = "select * from pagos where delcod = $delcod and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";;
-$result1 = mysql_db_query("ospimrem_intranet",$sql1,$db); 
+<?php
+$sql1 = "select * from pagos where delcod = $delcod and empcod = $empcod and anotra = '$ano' and mestra = '$mes'";;
+$result1 = mysql_query($sql1,$db); 
 while ($row1=mysql_fetch_array($result1)) {
 	if ($row1['sispag'] == 'E') {
 		$sispago = "Electrónico";
@@ -70,25 +73,24 @@ while ($row1=mysql_fetch_array($result1)) {
 	else {
 		$sispago = "Manual";
 	}
-	print ("<td width=140><div align=center><font face=Verdana size=1>".$row1['mestra']."/".$row1['anotra']."</font></div></td>");
-	print ("<td width=192><div align=center><font face=Verdana size=1>".$row1['fecdep']."</font></div></td>");
-	print ("<td width=182><div align=center><font face=Verdana size=1>".$row1['totdep']."</font></div></td>");
-	print ("<td width=154><div align=center><font face=Verdana size=1>".$sispago."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>".$row1['mestra']."/".$row1['anotra']."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>".$row1['fecdep']."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>".$row1['totdep']."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>".$sispago."</font></div></td>");
 	if ($row1['codbar'] != null) {
-	print ("<td width=325><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('ddjj.php?emp=$empcod&control=".$row1['codbar']."'))>".$row1['codbar']."</a></font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1><a href=javascript:mypopup('ddjj.php?emp=$empcod&control=".$row1['codbar']."')>".$row1['codbar']."</a></font></div></td>");
 	}
 	else {
-	print ("<td width=182><div align=center><font face=Verdana size=1>".$row1['codbar']."</font></div></td>");
+	print ("<td><div align=center><font face=Verdana size=1>-</font></div></td>");
 	}
 	print ("</tr>");
 }
 ?>
   </p>
 </table>
-<table width="1019" border="0">
+<table width="800" border="0">
   <tr>
-    <th width="304" scope="row"><div align="left" class="Estilo4"><font face="Verdana">Para volver a la cuenta Bot&oacute;n atras del explorador </font></div></th>
-    <th width="705" scope="row"><div align="right">
+    <th scope="row"><div align="right">
       <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
     </div></th>
   </tr>

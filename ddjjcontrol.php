@@ -1,7 +1,15 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+	
+include ("conexion.php");
+$del = $_GET['del'];
+$empcod = $_GET['emp'];
+$control = $_GET['control'];
+$sql = "select * from empresa where delcod = '$del' and empcod = '$empcod'";
+$result = mysql_query($sql,$db); 
+$row = mysql_fetch_array($result);
 ?>
 
 
@@ -30,13 +38,6 @@ if($_SESSION['delcod'] == null)
 </head>
 
 <body>
-<?
-include ("conexion.php");
-$sql = "select * from empresa where delcod = '$del' and empcod = '$empcod'";
-$result = mysql_db_query("ospimrem_intranet",$sql,$db); 
-$row = mysql_fetch_array($result);
-?>
-
 <table width="1023" border="0">
   <tr>
     <td width="57" scope="row"><div align="center" class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></div></td>
@@ -44,9 +45,7 @@ $row = mysql_fetch_array($result);
       <p class="Estilo3">Detalle de DDJJ </p>
     </div></td>
     <td width="516"><div align="right" class="Estilo3"><font size="3" face="Papyrus">
-      <?
- 					print ($row['nombre']);
-	?>
+      <?php print ($row['nombre']); ?>
     </font></div></td>
   </tr>
   <tr>
@@ -65,11 +64,11 @@ $row = mysql_fetch_array($result);
   </tr>
   <p>
 
-<?
+<?php
 $con = substr($control,15,14);
-
+mysql_select_db('ospimrem_aplicativo');
 $sql3 = "select * from ppjj where nrctrl = '$con'";
-$result3 = mysql_db_query("ospimrem_aplicativo",$sql3,$db); 
+$result3 = mysql_query($sql3,$db); 
 while ($row3 = mysql_fetch_array($result3)) {
 	print ("<td width=187><div align=center><font face=Verdana size=1>".$row3['nrcuil']."</font></div></td>");
 	print ("<td width=89><div align=center><font face=Verdana size=1>".$row3['permes']."</font></div></td>");
@@ -84,32 +83,32 @@ while ($row3 = mysql_fetch_array($result3)) {
   </p>
 </table>
 
-<?
+<?php
 $sql4 = "select * from validas where nrctrl = '$con'";
-$result4 = mysql_db_query("ospimrem_aplicativo",$sql4,$db); 
+$result4 = mysql_query($sql4,$db); 
 $row4 = mysql_fetch_array($result4);
 ?>
 
 <table width="1019" border="1">
   <tr class="Estilo4">
     <th width="370" scope="row"><div align="right" class="Estilo4 Estilo6">TOTALES </div></th>
-    <th width="158" class="Estilo7" scope="row"><? print($row4['remune']); ?></th>
-    <th width="148" class="Estilo7" scope="row"><? print($row4['apo060']); ?></th>
-    <th width="145" class="Estilo7" scope="row"><? print($row4['apo100']); ?></th>
-    <th width="176" class="Estilo7" scope="row"><? print($row4['apo150']); ?></th>
+    <th width="158" class="Estilo7" scope="row"><?php print($row4['remune']); ?></th>
+    <th width="148" class="Estilo7" scope="row"><?php print($row4['apo060']); ?></th>
+    <th width="145" class="Estilo7" scope="row"><?php print($row4['apo100']); ?></th>
+    <th width="176" class="Estilo7" scope="row"><?php print($row4['apo150']); ?></th>
   </tr>
 </table>
 
 <table width="1019" border="1">
   <tr>
     <th height="23" scope="row"><div align="right" class="Estilo7">RECARGO</div></th>
-    <th width="175" class="Estilo7" scope="row"><? print($row4['recarg']); ?></th>
+    <th width="175" class="Estilo7" scope="row"><?php print($row4['recarg']); ?></th>
   </tr>
 </table>
 <table width="1019" border="1">
   <tr>
     <th scope="row"><div align="right" class="Estilo7">TOTAL DEPOSITADO </div></th>
-    <th width="175" class="Estilo7" scope="row"><? print($row4['totapo']); ?></th>
+    <th width="175" class="Estilo7" scope="row"><?php print($row4['totapo']); ?></th>
   </tr>
 </table>
 

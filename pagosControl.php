@@ -1,7 +1,17 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+	
+include ("conexion.php");
+$del = $_GET['del'];
+$empcod = $_GET['empcod'];
+$ano = $_GET['ano'];
+$mes = $_GET['mes'];
+
+$sql = "select * from empresa where delcod = '$del' and empcod = '$empcod'";
+$result = mysql_query($sql,$db); 
+$row = mysql_fetch_array($result);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,15 +35,12 @@ if($_SESSION['delcod'] == null)
 -->
 </style>
 </head>
-
+<script>
+function mypopup(dire) {
+    mywindow = window.open(dire, "Info Pago", "location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1");
+}
+</script>
 <body>
-<?
-include ("conexion.php");
-$sql = "select * from empresa where delcod = '$del' and empcod = '$empcod'";
-$result = mysql_db_query("ospimrem_intranet",$sql,$db); 
-$row = mysql_fetch_array($result);
-?>
-
 <table width="1023" border="0">
   <tr>
     <td width="57" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></span></div></td>
@@ -41,9 +48,7 @@ $row = mysql_fetch_array($result);
       <p class="Estilo3">Detalle de Pago </p>
     </div></td>
     <td width="516"><div align="right" class="Estilo3"><font size="3" face="Papyrus">
-      <?
- 					print ($row['nombre']);
-	?>
+      <?php print ($row['nombre']);?>
     </font></div></td>
   </tr>
   <tr>
@@ -60,9 +65,9 @@ $row = mysql_fetch_array($result);
   </tr>
   <p>
   
-<?
+<?php
 $sql1 = "select * from pagos where delcod = '$del' and empcod = '$empcod' and anotra = '$ano' and mestra = '$mes'";;
-$result1 = mysql_db_query("ospimrem_intranet",$sql1,$db); 
+$result1 = mysql_query($sql1,$db); 
 while ($row1=mysql_fetch_array($result1)) {
 	if ($row1['sispag'] == 'E') {
 		$sispago = "Electrónico";
@@ -75,10 +80,10 @@ while ($row1=mysql_fetch_array($result1)) {
 	print ("<td width=182><div align=center><font face=Verdana size=1>".$row1['totdep']."</font></div></td>");
 	print ("<td width=154><div align=center><font face=Verdana size=1>".$sispago."</font></div></td>");
 	if ($row1['codbar'] != null) {
-	print ("<td width=325><div align=center><font face=Verdana size=1><a href=javascript:void(window.open('ddjjcontrol.php?del=$del&empcod=$empcod&control=".$row1['codbar']."'))>".$row1['codbar']."</a></font></div></td>");
+		print ("<td width=325><div align=center><font face=Verdana size=1><a href=javascript:mypopup('ddjjcontrol.php?del=$del&empcod=$empcod&control=".$row1['codbar']."')>".$row1['codbar']."</a></font></div></td>");
 	}
 	else {
-	print ("<td width=182><div align=center><font face=Verdana size=1>".$row1['codbar']."</font></div></td>");
+		print ("<td width=182><div align=center><font face=Verdana size=1>-</font></div></td>");
 	}
 	print ("</tr>");
 }
@@ -92,8 +97,7 @@ $control = substr($row1['codbar'],-1);
 
 <table width="1019" border="0">
   <tr>
-    <th width="304" scope="row"><div align="left" class="Estilo4"><font face="Verdana">Para volver a la cuenta Bot&oacute;n atras del explorador </font></div></th>
-    <th width="705" scope="row"><div align="right">
+    <th scope="row"><div align="right">
       <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
     </div></th>
   </tr>

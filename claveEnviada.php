@@ -25,6 +25,7 @@ body {
 <p style="word-spacing: 0; margin-top: 0; margin-bottom: 0" align="center"><font size="2" face="Verdana">En
   instantes recibir&aacute; en la direcci&oacute;n de mail registrada previamente el dato de
   su contrase&ntilde;a.</font></p>
+<p style="word-spacing: 0" align="center">&nbsp;</p>
 <div align="center"><b><font face="Verdana" size="2">
   <input name="back" type="submit" id="back" value="VOLVER" />
 </font></b>

@@ -1,7 +1,15 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
+
+include ("conexion.php");
+$nrcuit = $_GET['nrcuit'];
+$ano = $_GET['ano'];
+$mes = $_GET['mes'];
+$sql = "select * from empresa where nrcuit = '$nrcuit'";
+$result = mysql_query($sql,$db); 
+$row = mysql_fetch_array($result);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,32 +31,24 @@ if($_SESSION['delcod'] == null)
 </style>
 </head>
 <body>
-<?
-include ("conexion.php");
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
-$result = mysql_db_query("ospimrem_intranet",$sql,$db); 
-$row = mysql_fetch_array($result);
-?>
 
 <table width="546" border="0">
   <tr>
     <th width="56" scope="row"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="44" height="44" /></span></th>
     <td width="474"><div align="right"><font size="3" face="Papyrus">
-      <?
- 			print ($row['nombre']);
-		?>
+      <?php print ($row['nombre']);?>
     </font></div></td>
   </tr>
 </table>
 
-<?
-$sql2 = "select * from detacuer where delcod = $delcod and empcod = '$empcod' and anoacu = '$ano' and mesacu = '$mes'" ;
-$result2 = mysql_db_query("ospimrem_intranet",$sql2,$db); 
+<?php
+$sql2 = "select * from detacuer where nrcuit = $nrcuit and anoacu = '$ano' and mesacu = '$mes'" ;
+$result2 = mysql_query($sql2,$db); 
 $row2 = mysql_fetch_array($result2);
 $nroacu = $row2['nroacu'];
 				
-$sql3 = "select * from cabacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu" ;
-$result3 = mysql_db_query("ospimrem_intranet",$sql3,$db); 
+$sql3 = "select * from cabacuer where nrcuit = $nrcuit and nroacu = $nroacu" ;
+$result3 = mysql_query($sql3,$db); 
 $row3 = mysql_fetch_array($result3);
 ?>
 
@@ -56,34 +56,23 @@ $row3 = mysql_fetch_array($result3);
 <table width="548" border="1">
   <tr>
     <th width="167" scope="row"><div align="left">Per&iacute;odo</div></th>
-    <td width="365"><?
- 						print ($ano);
-						print ("/");
-						print ($mes);
-					?></td>
+    <td width="365"><?php print ($ano."/".$mes);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">N&uacute;mero</div></th>
-    <td><?
- 						print ($row3['nroacu']);
-					?></td>
+    <td><?php print ($row3['nroacu']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Fecha</div></th>
-    <td><?
- 						print ($row3['fecacu']);
-					?></td>
+    <td><?php print ($row3['fecacu']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Monto</div></th>
-    <td><?
- 						print ($row3['totacu']);
-					?></td>
+    <td><?php print ($row3['totacu']);?></td>
   </tr>
   <tr>
     <th scope="row"><div align="left">Estado</div></th>
-    <td><?
-		if ($row3['estacu'] == 1) {
+    <td><?php if ($row3['estacu'] == 1) {
  			print ("Vigente");
 		} else {
 			print ("Cancelado");
@@ -103,9 +92,9 @@ $row3 = mysql_fetch_array($result3);
 	<td width="260"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo de Barra </font></strong></div></td>
   </tr>
   <p>
-<?
-	$sql4 = "select * from cuoacuer where delcod = $delcod and empcod = '$empcod' and nroacu = $nroacu";
-	$result4 = mysql_db_query("ospimrem_intranet",$sql4,$db); 
+<?php 
+	$sql4 = "select * from cuoacuer where nrcuit = $nrcuit and nroacu = $nroacu";
+	$result4 = mysql_query($sql4,$db); 
 	while ($row4=mysql_fetch_array($result4)) {
 		if ($row4['sispag'] == 'E')
 		{
@@ -137,8 +126,7 @@ $row3 = mysql_fetch_array($result3);
 </table>
 <table width="1024" border="0">
   <tr>
-    <th width="304" scope="row"><div align="left" class="Estilo4"><font face="Verdana">Para volver a la cuenta Bot&oacute;n atras del explorador </font></div></th>
-    <th width="707" scope="row"><div align="right">
+    <th scope="row"><div align="right">
       <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
     </div></th>
   </tr>

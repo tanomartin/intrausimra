@@ -1,7 +1,7 @@
-<? session_save_path("sesiones");
+<?php session_save_path("sesiones");
 session_start();
 if($_SESSION['delcod'] == null)
-	header ("Location: http://www.usimra.com.ar/intranet/logintranet.php");
+	header ("Location: logintranet.php?err=2");
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -19,16 +19,20 @@ body {
 }
 -->
 </style></head>
-<body onUnload="logout.php" text="#003300" link="#006060" vlink="#006060">
-<form method="post" action="enviar.php"> 
-<th width="333" height="28" scope="row"><div align="left"></div></th>
-</form>
+<body>
 <form action="enviar.php" method="post"> 
 
   <p align="center" class="Estilo3">FORMULARIO DE CONSULTA </p>
   <p align="center"><img src="LOGOFINAL.jpg" width="129" height="129"></p>
-  
-  
+  <p align="center">
+    <?php 
+  				if (isset($_GET['err'])) {
+	  				$err = $_GET['err'];
+					if ($err == 1) {
+	  		  			print("<div align='center' style='color:#FF0000'><b> ERROR AL ENVIAR EL MENSAJE INTENTELO NUEVAMENTE </b></div>");
+					}
+	  			} ?>
+  </p>
   <div align="center">
     <table width="1024" border="1">
       <tr>
@@ -60,18 +64,12 @@ body {
             <input name="submit2" type="submit" value="Enviar">
           </div></th>
       </tr>
-              </table>
+    </table>
     <br>
   </div>
+  <div align="center">
+    <input type="button" name="back" value="VOLVER" onClick="location.href='menu.php'"/>
+  </div>
 </form>
-
-<table width="294" border="0">
-  <tr>
-    <th width="280" scope="row"><b><font face="Verdana" size="2">
-      <input name="back" type="submit" id="back" value="VOLVER" onClick="location.href='menu.php'"/>
-    </font></b></th>
-  </tr>
-</table>
-<b><font face="Verdana" size="2"></font></b>
 </body>
 </html> 
