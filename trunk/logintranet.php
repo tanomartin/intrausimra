@@ -2,14 +2,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Documento sin t&iacute;tulo</title>
+<title>Intranet - Login</title>
+<style type="text/css">
+<!--
+.Estilo2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #666666;
+}
+.Estilo3 {
+	font-family: Papyrus;
+	font-weight: bold;
+	color: #999999;
+}
+body {
+	background-color: #E2DDB8;
+}
+-->
+</style>
 </head>
 
 <body>
-<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="550" height="400">
-  <param name="movie" value="work.swf" />
-  <param name="quality" value="high" />
-  <embed src="work.swf" width="550" height="400" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
-</object>
+<p align="center" class="Estilo3">SISTEMA DE CONSULTA PARA DELEGACIONES</p>
+<p align="center"><img src="LOGOFINAL.jpg" width="342" height="342" /></p>
+<p align="center"><?php if (isset($_GET['err'])) {
+	  				$err = $_GET['err'];
+					if ($err == 1) {
+	  		  			print("<div align='center' style='color:#FF0000'><b> USUARIO Y/O CONTRASEÑA INCORRECTOS </b></div>");
+					}
+					if ($err == 2) {
+	  		  			print("<div align='center' style='color:#FF0000'><b> SU SESIÓN HA CADUCADO VUELVA A INGRESAR </b></div>");
+					}
+	  			} ?></p>
+<form method="POST" action="verificaID.php">
+
+<table width="100%" border="0">
+  <tr>
+    <td width="19%"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
+    <td width="30%" align="right"><font face="Verdana" size="2"><b>Usuario:&nbsp;</b></font></td>
+    <td width="30%"><p align="left">
+      <input name="user" type="text" id="user" style="background-color: #ffffff" size="20" />
+    </p></td>
+    <td width="21%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="19%">&nbsp;</td>
+    <td width="30%" align="right"><font face="Verdana" size="2"><b>Contrase&ntilde;a:&nbsp;</b></font></td>
+    <td width="30%"><p align="left">
+      <input name="pass" type="password" id="pass" style="background-color: #FFFFFF" size="20" />
+    </p></td>
+    <td width="21%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="19%"></td>
+    <td colspan="2" align="right">
+      <div align="center"><input name="ingresar" type="submit" id="ingresar"  value="Ingresar" />
+        </div>
+      </td>
+    <td width="21%"></td>
+  </tr>
+  <tr>
+    <td width="19%"></td>
+    <td align="right" colspan="2"><p align="center"><a href="olvido.php" class="Estilo2">&iquest;OLVIDO
+      SU CONTRASE&Ntilde;A?</a></p></td>
+    <td width="21%"></td>
+  </tr>
+</table>
+</form>
+
 </body>
 </html>

@@ -30,6 +30,13 @@ body {
     <td>&nbsp;</td>
     <td colspan="2" align="right"><div align="center" class="Estilo3">
       <p class="Estilo4">RECORDATORIO DE CONTRASE&Ntilde;A</p>
+      <p><?php if (isset($_GET['err'])) {
+	  				$err = $_GET['err'];
+					if ($err == 1) {
+	  		  			print("<div align='center' style='color:#FF0000'><b> USUARIO Y/O EMAIL INCORRECTOS </b></div>");
+					}
+	  			} ?>
+	  </p>
     </div></td>
     <td>&nbsp;</td>
   </tr>
