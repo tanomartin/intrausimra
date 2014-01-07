@@ -79,7 +79,7 @@ body {
 <script>
 
 function mypopup(dire) {
-    mywindow = window.open(dire, "Info Cuenta", "location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1");
+    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
 }
 
 </script>
