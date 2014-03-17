@@ -52,7 +52,7 @@ $row=mysql_fetch_array($result);
 <table width="100%" border="0" align="center">
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="2" align="right" class="Estilo3"><div align="center" class="Estilo13">ULTIMA ACTUALIZACI&Oacute;N - 26/11/2013 </div></td>
+    <td colspan="2" align="right" class="Estilo3"><div align="center" class="Estilo13">ULTIMA ACTUALIZACI&Oacute;N - 06/03/2014 </div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
