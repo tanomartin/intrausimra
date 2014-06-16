@@ -50,7 +50,7 @@ $row=mysql_fetch_array($result);
 <table width="100%" border="0" align="center">
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center" class="Estilo18">ULTIMA ACTUALIZACI&Oacute;N - 06/03/2014 <a href="controlActua.php">(Control Actualizaci&oacute;n) </a></div></td>
+    <td colspan="3" align="right" class="Estilo3"><div align="center" class="Estilo18">ULTIMA ACTUALIZACI&Oacute;N - 16/06/2014 <a href="controlActua.php">(Control Actualizaci&oacute;n) </a></div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
