@@ -11,7 +11,7 @@ $sql0 = "select * from empresa e where e.delcod = $delcod and e.empcod = $empcod
 $result0 = mysql_query($sql0,$db); 
 $row0 = mysql_fetch_array($result0);
 
-mysql_select_db('ospimrem_aplicativo');
+mysql_select_db('ospimrem_newaplicativo');
 $sql = "select e.*, c.descri as catego, p.descripcion as provi from empleados e, empresa a, categorias c, provincia p where e.nrcuit = '$cuit' and e.nrcuil = '$cuil' and e.nrcuit = a.nrcuit and a.rramaa = c.codram and e.catego = c.codcat and e.provin = p.id";
 $result = mysql_query($sql,$db); 
 $row=mysql_fetch_array($result);

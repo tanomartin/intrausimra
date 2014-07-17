@@ -17,7 +17,7 @@ $sql = "select * from empresa where delcod = $dele and empcod = '$empcod'";
 $result = mysql_query($sql,$db); 
 $rowEmpre = mysql_fetch_array($result);
 
-mysql_select_db('ospimrem_aplicativo');
+mysql_select_db('ospimrem_newaplicativo');
 $nrocuit = $rowEmpre['nrcuit'];
 $sql = "select * from empleados where nrcuit = '$nrocuit' order by $orden";
 $result = mysql_query($sql,$db); 
