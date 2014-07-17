@@ -15,7 +15,7 @@ $result = mysql_query($sql,$db);
 $row = mysql_fetch_array($result);
 
 $nrocuit = $row['nrcuit'];
-mysql_select_db('ospimrem_aplicativo');
+mysql_select_db('ospimrem_newaplicativo');
 $sql = "select * from empleados where nrcuit = '$nrocuit' order by $orden";
 $result = mysql_query($sql,$db); 
 ?>

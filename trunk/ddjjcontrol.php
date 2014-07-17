@@ -66,7 +66,7 @@ $row = mysql_fetch_array($result);
 
 <?php
 $con = substr($control,15,14);
-mysql_select_db('ospimrem_aplicativo');
+mysql_select_db('ospimrem_newaplicativo');
 $sql3 = "select * from ppjj where nrctrl = '$con'";
 $result3 = mysql_query($sql3,$db); 
 while ($row3 = mysql_fetch_array($result3)) {
