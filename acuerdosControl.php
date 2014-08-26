@@ -1,9 +1,5 @@
-<?php session_save_path("sesiones");
-session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
+<?php include ("verificaSesion.php"); 
 
-include ("conexion.php");
 $del = $_GET['del'];
 $nrcuit = $_GET['nrcuit'];
 $ano = $_GET['ano'];

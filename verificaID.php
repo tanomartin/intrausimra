@@ -9,14 +9,21 @@ $sql = "select * from usuarios where delcod = '$delcod' and claves = '$clave'";
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
 if ($cant > 0) {
-	$_SESSION['delcod'] = $delcod;
-	$_SESSION['aut'] = 'pepepascual';
-	if ($delcod >= "3200") {
-		header ('location:menuControl.php');	
+	$rowUsuario = mysql_fetch_assoc($result); 
+	if ($rowUsuario['acceso'] == 0) {
+		$redire = 'location:actualizando.php';
 	} else {
-		header ('location:menu.php');
+		$_SESSION['delcod'] = $delcod;
+		$_SESSION['aut'] = 'pepepascual';
+		if ($delcod >= "3200") {
+			$redire = 'location:menuControl.php';	
+		} else {
+			$redire = 'location:menu.php';
+		}
 	}
 } else {
-	header ('location:logintranet.php?err=1');
+	$redire = 'location:logintranet.php?err=1';
 }
+
+header($redire);
 ?>
