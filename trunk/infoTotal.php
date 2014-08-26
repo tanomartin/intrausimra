@@ -1,8 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
-include ("conexion.php");
+<?php include ("verificaSesion.php");
 
 $empcod = $_GET['empcod'];
 $sql = "select e.*, p.nombre as provi from empresa e, provin p where e.delcod = $delcod and e.empcod = $empcod and e.provle = p.codigo";

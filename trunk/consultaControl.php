@@ -1,8 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
-?>
+<?php include ("verificaSesion.php"); ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>

@@ -1,9 +1,4 @@
-<?php session_save_path("sesiones");
-session_start();
-if($_SESSION['delcod'] == null)
-	header ("Location: logintranet.php?err=2");
-include ("conexion.php");
-?>
+<?php include ("verificaSesion.php"); ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -52,7 +47,12 @@ $row=mysql_fetch_array($result);
 <table width="100%" border="0" align="center">
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="2" align="right" class="Estilo3"><div align="center" class="Estilo13">ULTIMA ACTUALIZACI&Oacute;N - 16/06/2014 </div></td>
+    <td colspan="2" align="right" class="Estilo3"><div align="center" class="Estilo13">
+	    <?php 
+			$fechaActua = substr($row['fechaactualizacion'], 8, 2)."-".substr($row['fechaactualizacion'], 5, 2)."-".substr($row['fechaactualizacion'], 0, 4);
+			print("ÚLTIMA ACTUALIZACIÓN ".$fechaActua);   
+		?> 
+	</div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
