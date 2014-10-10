@@ -122,31 +122,49 @@ function mypopup(dire) {
 </p>
 
 <?php
-$año = date("Y")-5;
-$añofin = date("Y");
-while($año<=$añofin) {
+$anoactual =  date("Y");
+$mesacutal = date("m");
+
+$anoinicio = $anoactual-5;
+$mesinicio = $mesacutal+1;
+if($mesinicio == 13) { 
+	$mesinicio = 1; 
+	$anoinicio++; 
+}
+$mesfin = $mesacutal;
+$ano = $anoinicio;
+$anofin = $anoactual;
+while($ano<=$anofin) {
 ?>
   <tr>
-    <td width="52"> <div align="left"><strong><?php echo $año; ?></strong></div></td>
+    <td width="52"> <div align="left"><strong><?php echo $ano; ?></strong></div></td>
     
 <?php
 	for($mes = 1; $mes < 13; $mes++) { 
-		$descri = estado($año,$mes,$db);
-		if ($descri == "PAGO") {
-			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosControl.php?empcod=".$empcod."&ano=".$año."&mes=".$mes."&del=".$del."')>".$descri."</font></div></td>");
-		}
-		if ($descri == "ACUER.") {
-			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('acuerdosControl.php?nrcuit=".$nrcuit."&ano=".$año."&mes=".$mes."&del=".$del."')>".$descri."</a></font></div></td>");
-		}
-		if ($descri == "P.DIF.") {
-			print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosAnteControl.php?empcod=".$empcod."&ano=".$año."&mes=".$mes."&del=".$del."')>".$descri."</a></font></div></td>");
-		}
-		if (($descri == "NO PAGO") || ($descri == "JUICI.") || ($descri == "S.DJ.")) {
-			print ("<td width=81><div align=center><font face=Verdana size=1>$descri</font></div></td>");
+		if ($ano == $anoinicio && $mes < $mesinicio) {
+			print ("<td width=81><div align=center><font face=Verdana size=1>-</font></div></td>");
+		} else {
+			if ($ano == $anofin && $mes > $mesfin) {
+				print ("<td width=81><div align=center><font face=Verdana size=1>-</font></div></td>");
+			} else {
+				$descri = estado($ano,$mes,$db);
+				if ($descri == "PAGO") {
+					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosControl.php?empcod=".$empcod."&ano=".$ano."&mes=".$mes."&del=".$del."')>".$descri."</font></div></td>");
+				}
+				if ($descri == "ACUER.") {
+					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('acuerdosControl.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."&del=".$del."')>".$descri."</a></font></div></td>");
+				}
+				if ($descri == "P.DIF.") {
+					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosAnteControl.php?empcod=".$empcod."&ano=".$ano."&mes=".$mes."&del=".$del."')>".$descri."</a></font></div></td>");
+				}
+				if (($descri == "NO PAGO") || ($descri == "JUICI.") || ($descri == "S.DJ.")) {
+					print ("<td width=81><div align=center><font face=Verdana size=1>$descri</font></div></td>");
+				}
+			}
 		}
 	}
 	print("</tr>");
-	$año++;
+	$ano++;
 }
 ?>
 </table>
