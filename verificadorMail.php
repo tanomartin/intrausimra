@@ -1,15 +1,12 @@
 <?php
 include ("conexion.php");
-$datos = array_values($_POST);
-$mail = $datos[0];
-$delcod = $datos[1];
-
+$mail = $_POST['mail'];
+$delcod = $_POST['delcod'];
 $sql = "select * from usuarios where delcod = '$delcod' and emails = '$mail'";
-print($sql);
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
 
-if ($cant > 0) {
+if ($cant == 1) {
 	$row=mysql_fetch_array($result);
 	$asunto = "Recordatorio de Contraseña del sitio www.usimra.com.ar";
 	

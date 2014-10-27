@@ -44,7 +44,7 @@ body {
     <td width="20%"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
     <td width="30%" align="right"><p align="right"><font face="Verdana" size="2"><b>E-mail Registrado:&nbsp;</b></font></p></td>
     <td width="30%"><p align="left">
-      <input name="user" type="text" id="user" style="background-color: #FFFFFF" size="20" />
+      <input name="mail" type="text" id="mail" style="background-color: #FFFFFF" size="20" />
     </p></td>
     <td width="20%">&nbsp;</td>
   </tr>
@@ -52,7 +52,7 @@ body {
     <td width="20%" height="30">&nbsp;</td>
     <td width="30%" align="right"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0" align="right"><b><font face="Verdana" size="2">Usuario</font><font face="Verdana" size="2">:&nbsp;</font></b></p>        </td>
     <td width="30%"><p align="left">
-      <input name="pass" id="pass" style="background-color: #FFFFFF" size="20" />
+      <input type="text" name="delcod" id="delcod" style="background-color: #FFFFFF" size="20" />
     </p></td>
     <td width="20%">&nbsp;</td>
   </tr>
