@@ -53,23 +53,16 @@ $row=mysql_fetch_array($result);
 			print("ÚLTIMA ACTUALIZACIÓN ".$fechaActua);   
 		?> 
 	</div></td>
-    <td>&nbsp;</td>
   </tr>
   <tr>
     <td height="33">&nbsp;</td>
     <td align="right" class="Estilo3"><strong><span class="Estilo14">Instructivo de uso</span> - </strong></td>
-    <td><a href=javascript:void(window.open("http://www.usimra.com.ar/intranet/tutorialIntra.pdf")) target="_top">Descargar Instructivo </a></td>
+    <td><a href="javascript:void(window.open('http://www.usimra.com.ar/intranet/tutorialIntra.pdf'))" target="_top">Descargar Instructivo </a></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td height="21">&nbsp;</td>
-    <td align="right"><span class="Estilo16">El instructivo esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> </td>
-    <td><span class="Estilo16"><a href=javascript:void(window.open("http://www.adobe.com/es/products/acrobat/readstep2.html")) target="_top">Descargar aqui Adobe Reader</a> </span></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="30%" height="33"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
-    <td width="20%" align="right" class="Estilo3"><p class="Estilo14">Bienvenido </p>    </td>
+    <td width="30%"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
+    <td width="20%" align="right" class="Estilo3">Bienvenido</td>
     <td width="23%"><p align="left"><b><?php echo $row['nombre'] ?></b></p></td>
     <td width="27%">&nbsp;</td>
   </tr>
@@ -78,8 +71,6 @@ $row=mysql_fetch_array($result);
     <td colspan="2" align="right"><p align="center" class="Estilo3 Estilo10">Su &uacute;ltima sesi&oacute;n fue el <?php echo $row['fecuac'] ?> a las <?php echo $row['horuac'] ?> </p></td>
     <td width="27%">&nbsp;</td>
   </tr>
-  
-  
   <tr>
     <td width="30%"></td>
     <td align="right" colspan="2"><p align="center"><a href="clave.htm" class="Estilo2"></a></p></td>
@@ -97,17 +88,13 @@ $row=mysql_fetch_array($result);
   <div align="center">
     <input type="button" name="salir" value="Salir" onclick="location.href='logout.php'"/>
   </div>
-  </label>
 
 </body>
 </html>
-
-<p>
 <?php //update de la fecha y la hora
 	$hoy = date("Ymd"); 
 	$hora = date("H:i:s"); 
 	$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod"; 
 	$result = mysql_query($sql,$db);
 ?>
-</p>
 

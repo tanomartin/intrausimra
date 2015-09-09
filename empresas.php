@@ -30,19 +30,18 @@ body {
 }
 -->
 </style>
-</head>
-<script>
 
+<script>
 function mypopup(dire, empre) {
 	titulo = "Info Empresa " + empre;
     mywindow = window.open(dire, titulo, "location=1, width=600, height=350, top=30, left=40, resizable=0");
 }
-
 </script>
 
+</head>
 <body>
 <form id="form1" name="form1" method="post" action="empresas.php">
-<table width="1025" border="0">
+<table width="1025" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="75" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
     <td colspan="3" scope="row"><div align="left">
@@ -50,7 +49,6 @@ function mypopup(dire, empre) {
     </div></td>
     <td width="298"><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
   </tr>
-  
   <tr>
     <td colspan="3"><div align="left"><b><font face="Verdana" size="2">
       <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
@@ -73,26 +71,24 @@ function mypopup(dire, empre) {
     </div></td>
   </tr>
 </table>
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1025" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="111"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
-    <td width="363"><div align="center"><strong><font size="1" face="Verdana">Raz&oacute;n Social </font></strong></div></td>
-    <td width="250"><div align="center"><strong><font size="1" face="Verdana">CUIT</font></strong></div></td>
-    <td width="150"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
-	<td width="150"><div align="center"><strong><font size="1" face="Verdana">Nómina de Empleados </font></strong></div></td>
+    <th>C&oacute;digo</th>
+    <th>Raz&oacute;n Social </th>
+    <th>CUIT</th>
+    <th>+ Informacion </th>
+	<th>Nómina de Empleados </th>
   </tr>
-  <p>
 <?php
-while ($row=mysql_fetch_array($result)) {
-	print ("<td width=111><font face=Verdana size=1>".$row['empcod']."</font></td>");
-	print ("<td width=363><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-	print ("<td width=250><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-	print ("<td width=150><div align=center><font face=Verdana size=1><a href=javascript:mypopup('infoTotal.php?empcod=".$row['empcod']."',".$row['empcod'].")>".FICHA."</a></font></div></td>");
-	print ("<td width=150><div align=center><font face=Verdana size=1><a href=empleados.php?empcod=".$row['empcod'].">".NOMINA."</a></font></div></td>");
-	print ("</tr>");
-}
-?>
-</p>
+while ($row=mysql_fetch_array($result)) { ?>
+	<tr>
+		<td><?php echo $row['empcod'] ?></td>
+		<td><b><?php echo $row['nombre'] ?></b></td>
+		<td><?php echo $row['nrcuit'] ?></td>
+		<td><a href="javascript:mypopup('infoTotal.php?empcod=<?php echo $row['empcod'] ?>','<?php echo $row['empcod'] ?>')">FICHA</a></td>
+		<td><a href="empleados.php?empcod=<?php echo $row['empcod'] ?>">NOMINA</a></td>
+	</tr>
+<?php } ?>
 </table>
 </form>
 </body>

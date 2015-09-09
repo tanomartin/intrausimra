@@ -33,24 +33,26 @@ body {
 }
 -->
 </style>
-</head>
+
 <script>
 function mypopup(dire, empre) {
 	titulo = "Info Empresa " + empre;
     mywindow = window.open(dire, titulo, "location=1, width=600, height=350, top=30, left=40, resizable=0");
 }
 </script>
+
+</head>
+
 <body>
 
 <form id="form1" name="form1" method="post" action="empresasControl.php?dele=<?php echo $dele?>">
-<table width="1025" border="0">
+<table width="1025" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="61" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="49" height="49" /></span></div></td>
     <td colspan="2"> <div align="left">
       <p class="Estilo3">EMPRESAS</p>
     </div></td>
-    <td width="313"></p>
-      <div align="right">
+    <td width="313">
       <div align="right" class="Estilo3"><?php print ("Delegación: "."$dele");?></div></td>
   </tr>
   
@@ -74,31 +76,30 @@ function mypopup(dire, empre) {
         </div></td>
   </tr>
 </table>
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1025" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="62"><div align="center"><strong><font size="1" face="Verdana">Delegaci&oacute;n</font></strong></div></td>
-    <td width="56"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
-    <td width="331"><div align="center"><strong><font size="1" face="Verdana">Raz&oacute;n Social </font></strong></div></td>
-    <td width="161"><div align="center"><strong><font size="1" face="Verdana">CUIT</font></strong></div></td>
-    <td width="138"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
-	<td width="114"><div align="center"><strong><font size="1" face="Verdana">Nómina de Empleados </font></strong></div></td>
-    <td width="119"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Cuentas</font> </font></strong></div></td>
+    <th>Delegaci&oacute;n</th>
+    <th>C&oacute;digo</th>
+    <th>Raz&oacute;n Social</th>
+    <th>CUIT</th>
+    <th>+ Info</th>
+	<th>Nómina</th>
+    <th>Cuentas</th>
   </tr>
-  <p>
 <?php
-while ($row=mysql_fetch_array($result)) {
-	print ("<td width=62><font face=Verdana size=1>".$row['delcod']."</font></td>");
-	print ("<td width=56><font face=Verdana size=1>".$row['empcod']."</font></td>");
-	print ("<td width=331><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-	print ("<td width=161><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-	print ("<td width=138><div align=center><font face=Verdana size=1><a href=javascript:mypopup('infoTotalControl.php?dele=".$row['delcod']."&empcod=".$row['empcod']."',".$row['empcod'].")>".FICHA."</a></font></div></td>");
-	print ("<td width=114><div align=center><font face=Verdana size=1><a href=empleadosControl.php?empcod=".$row['empcod']."&dele=".$row['delcod'].">".NOMINA."</a></font></div></td>");
-	print ("<td width=119><div align=center><font face=Verdana size=1><a href=estado_cuentaControl.php?empcod=".$row['empcod']."&dele=".$row['delcod'].">".CUENTA."</a></font></div></td>");
-	print ("</tr>");
-}
-?>
+while ($row=mysql_fetch_array($result)) { 
+	$redireFicha = "infoTotalControl.php?dele=".$row['delcod']."&empcod=".$row['empcod']; ?>
+	<tr>
+		<td><?php echo $row['delcod'] ?></td>
+		<td><?php echo $row['empcod'] ?></td>
+		<td><b><?php echo $row['nombre'] ?></b></td>
+		<td><?php echo $row['nrcuit'] ?></td>
+		<td><a href="javascript:mypopup('<?php echo $redireFicha ?>','<?php echo $row['empcod'] ?>')">FICHA</a></td>
+		<td><a href="empleadosControl.php?empcod=<?php echo $row['empcod'] ?>&dele=<?php echo $row['delcod'] ?>">NOMINA</a></td>
+		<td><a href="estado_cuentaControl.php?empcod=<?php echo $row['empcod'] ?>&dele=<?php echo $row['delcod'] ?>">CUENTA</a></td>
+	</tr>
+<?php } ?>
  </table>
-
 </form>
 
 </body>

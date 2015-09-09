@@ -77,8 +77,5 @@ $row=mysql_fetch_array($result);
     </div></th>
   </tr>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp; </p>
-</form>
 </body>
 </html>

@@ -37,16 +37,19 @@ body {
 }
 -->
 </style>
-</head>
+
 <script>
 function mypopup(dire, emple) {
 	titulo = "Info Empresa " + emple;
     mywindow = window.open(dire, titulo, "location=1, width=1080, height=600, top=30, left=40, resizable=0");
 }
 </script>
+
+</head>
+
 <body>
 <form id="form1" name="form1" method="post" action="empleadosControl.php?dele=<?php echo $dele?>&empcod=<?php echo $empcod?>">
-<table width="935" border="0">
+<table width="935" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="49" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="49" height="49" /></span></div></td>
     <td colspan="2" scope="row"> <div align="left">
@@ -72,32 +75,29 @@ function mypopup(dire, emple) {
       <input name="back2" type="submit" id="back2" value="LISTAR" />
       </font></b></div>      
       <b><font face="Verdana" size="2"><label></label>
-      <div align="center"></div>
       </font></b></td>
     <td><div align="right">
       <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
     </div></td>
   </tr>
 </table>
-  <table border="1" width="935" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
-<tr>
-    <td width="99"><div align="center"><strong><font size="1" face="Verdana">CUIL</font></strong></div></td>
-    <td width="338"><div align="center"><strong><font size="1" face="Verdana">Nombre</font></strong></div></td>
-    <td width="338"><div align="center"><strong><font size="1" face="Verdana">Apellido</font></strong></div></td>
-    <td width="168"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
-</tr>
-<p>
+  <table border="1" width="935" cellpadding="2" cellspacing="0" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px">
+	<tr>
+	    <th>CUIL</th>
+	    <th>Nombre</th>
+	    <th>Apellido</th>
+	    <th>+ Info</th>
+	</tr>
 <?php
 
-while ($row=mysql_fetch_array($result)) {
-	print ("<td width=99><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
-	print ("<td width=338><font face=Verdana size=1>".$row['nombre']."</font></td>");
-	print ("<td width=338><font face=Verdana size=1>".$row['apelli']."</font></td>");
-	print ("<td width=168><div align=center><font face=Verdana size=1><a href=javascript:mypopup('infoTotalEmpleadoControl.php?cuil=".$row['nrcuil']."&cuit=".$nrocuit."&empcod=".$empcod."&dele=".$dele."',".$row['nrcuil'].")>".FICHA."</a></font></div></td>");
-	print ("</tr>");
-}
-?>
-</p>
+while ($row=mysql_fetch_array($result)) { ?>
+	<tr>
+		<td><b><?php echo $row['nrcuil'] ?></b></td>
+		<td><?php echo $row['nombre'] ?></td>
+		<td><?php echo $row['apelli'] ?></td>
+		<td><a href="javascript:mypopup('infoTotalEmpleadoControl.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrocuit ?>&empcod=<?php echo $empcod ?>&dele=<?php echo $dele ?>','<?php echo $row['nrcuil'] ?>')">FICHA</a></td>
+	</tr>
+<?php } ?>
  </table>
 </form>
 </body>

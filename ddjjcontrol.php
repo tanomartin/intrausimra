@@ -34,7 +34,7 @@ $row = mysql_fetch_array($result);
 </head>
 
 <body>
-<table width="1023" border="0">
+<table width="1023" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="57" scope="row"><div align="center" class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></div></td>
     <td width="436"><div align="left">
@@ -48,66 +48,54 @@ $row = mysql_fetch_array($result);
     <td colspan="3" scope="row"><div align="right" class="Estilo5">U.S.I.M.R.A. </div></td>
   </tr>
 </table>
-<table border="1" width="1020" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1020" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="187"><div align="center"><strong><font size="1" face="Verdana">CUIL</font></strong></div></td>
-    <td width="89"><div align="center"><strong><font size="1" face="Verdana">Mes</font></strong></div></td>
-    <td width="80"><div align="center"><strong><font size="1" face="Verdana"><font size="1">A&ntilde;o</font> </font></strong></div></td>
-    <td width="157"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Remuneraci&oacute;n</font> </font></strong></div></td>
-    <td width="143"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Aporte 0.60 </font></font></strong></div></td>
-    <td width="145"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Aporte 1.00 </font> </font></strong></div></td>
-    <td width="175"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Aporte 1.50 </font> </font></strong></div></td>
+    <th>CUIL</th>
+    <th>Mes</th>
+    <th>A&ntilde;o</th>
+    <th>Remuneraci&oacute;n</th>
+    <th>Aporte 0.60 </th>
+    <th>Aporte 1.00 </th>
+    <th>Aporte 1.50 </th>
   </tr>
-  <p>
 
 <?php
 $con = substr($control,15,14);
 mysql_select_db('ospimrem_newaplicativo');
 $sql3 = "select * from ppjj where nrctrl = '$con'";
 $result3 = mysql_query($sql3,$db); 
-while ($row3 = mysql_fetch_array($result3)) {
-	print ("<td width=187><div align=center><font face=Verdana size=1>".$row3['nrcuil']."</font></div></td>");
-	print ("<td width=89><div align=center><font face=Verdana size=1>".$row3['permes']."</font></div></td>");
-	print ("<td width=80><div align=center><font face=Verdana size=1>".$row3['perano']."</font></div></td>");
-	print ("<td width=157><div align=center><font face=Verdana size=1>".$row3['remune']."</font></div></td>");
-	print ("<td width=143><div align=center><font face=Verdana size=1>".$row3['apo060']."</font></div></td>");
-	print ("<td width=145><div align=center><font face=Verdana size=1>".$row3['apo100']."</font></div></td>");
-	print ("<td width=175><div align=center><font face=Verdana size=1>".$row3['apo150']."</font></div></td>");
-	print ("</tr>");
-}
-?>
-  </p>
-</table>
 
-<?php
 $sql4 = "select * from validas where nrctrl = '$con'";
-$result4 = mysql_query($sql4,$db); 
+$result4 = mysql_query($sql4,$db);
 $row4 = mysql_fetch_array($result4);
-?>
 
-<table width="1019" border="1">
-  <tr class="Estilo4">
-    <th width="370" scope="row"><div align="right" class="Estilo4 Estilo6">TOTALES </div></th>
-    <th width="158" class="Estilo7" scope="row"><?php print($row4['remune']); ?></th>
-    <th width="148" class="Estilo7" scope="row"><?php print($row4['apo060']); ?></th>
-    <th width="145" class="Estilo7" scope="row"><?php print($row4['apo100']); ?></th>
-    <th width="176" class="Estilo7" scope="row"><?php print($row4['apo150']); ?></th>
+while ($row3 = mysql_fetch_array($result3)) { ?>
+	<tr>
+		<td><?php echo $row3['nrcuil'] ?></td>
+		<td><?php echo $row3['permes'] ?></td>
+		<td><?php echo $row3['perano'] ?></td>
+		<td><?php echo $row3['remune'] ?></td>
+		<td><?php echo $row3['apo060'] ?></td>
+		<td><?php echo $row3['apo100'] ?></td>
+		<td><?php echo $row3['apo150'] ?></td>
+	</tr>
+<?php } ?>
+    <tr class="Estilo4">
+	    <th colspan="3"><div align="right" class="Estilo4 Estilo6">TOTALES </div></th>
+	    <th><?php print($row4['remune']); ?></th>
+	    <th><?php print($row4['apo060']); ?></th>
+	    <th><?php print($row4['apo100']); ?></th>
+	    <th><?php print($row4['apo150']); ?></th>
   </tr>
-</table>
-
-<table width="1019" border="1">
-  <tr>
-    <th height="23" scope="row"><div align="right" class="Estilo7">RECARGO</div></th>
-    <th width="175" class="Estilo7" scope="row"><?php print($row4['recarg']); ?></th>
+   <tr>
+    <th colspan="6"><div align="right" class="Estilo7">RECARGO</div></th>
+    <th><?php print($row4['recarg']); ?></th>
   </tr>
-</table>
-<table width="1019" border="1">
-  <tr>
-    <th scope="row"><div align="right" class="Estilo7">TOTAL DEPOSITADO </div></th>
+   <tr>
+    <th colspan="6"><div align="right" class="Estilo7">TOTAL DEPOSITADO </div></th>
     <th width="175" class="Estilo7" scope="row"><?php print($row4['totapo']); ?></th>
   </tr>
 </table>
-
 
 <table width="1019" border="0">
   <tr>
@@ -117,7 +105,5 @@ $row4 = mysql_fetch_array($result4);
     </div></th>
   </tr>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 </body>
 </html>

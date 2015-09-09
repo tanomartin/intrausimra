@@ -30,9 +30,7 @@ $row = mysql_fetch_array($result);
 <table width="546" border="0">
   <tr>
     <th width="56" scope="row"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="44" height="44" /></span></th>
-    <td width="474"><div align="right"><font size="3" face="Papyrus">
-      <?php print ($row['nombre']);?>
-    </font></div></td>
+    <td width="474"><div align="right"><font size="3" face="Papyrus"><?php print ($row['nombre']);?></font></div></td>
   </tr>
 </table>
 
@@ -50,80 +48,68 @@ $row3 = mysql_fetch_array($result3);
 
 <table width="548" border="1">
   <tr>
-    <th width="167" scope="row"><div align="left">Per&iacute;odo</div></th>
-    <td width="365"><?php print ($ano."/".$mes);?></td>
+    <th><div align="left">Per&iacute;odo</div></th>
+    <td><?php print ($ano."/".$mes);?></td>
   </tr>
   <tr>
-    <th scope="row"><div align="left">N&uacute;mero</div></th>
+    <th><div align="left">N&uacute;mero</div></th>
     <td><?php print ($row3['nroacu']);?></td>
   </tr>
   <tr>
-    <th scope="row"><div align="left">Fecha</div></th>
+    <th><div align="left">Fecha</div></th>
     <td><?php print ($row3['fecacu']);?></td>
   </tr>
   <tr>
-    <th scope="row"><div align="left">Monto</div></th>
+    <th><div align="left">Monto</div></th>
     <td><?php print ($row3['totacu']);?></td>
   </tr>
   <tr>
-    <th scope="row"><div align="left">Estado</div></th>
-    <td><?php if ($row3['estacu'] == 1) {
- 			print ("Vigente");
-		} else {
-			print ("Cancelado");
-		}
-		?></td>
+    <th><div align="left">Estado</div></th>
+    <td><?php if ($row3['estacu'] == 1) { echo "Vigente"; } else { echo "Cancelado"; } ?></td>
   </tr>
 </table>
 <p class="Estilo3">Cuotas</p>
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1025" cellpadding="2" cellspacing="0" style="text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px">
   <tr>
-    <td width="80"><div align="center"><strong><font size="1" face="Verdana">N&uacute;mero </font></strong></div></td>
-    <td width="136"><div align="center"><strong><font size="1" face="Verdana">Monto de Cuota </font></strong></div></td>
-    <td width="136"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Fecha de Vencimiento </font> </font></strong></div></td>
-    <td width="121"><div align="center"><strong><font size="1" face="Verdana">Monto Pagado </font></strong></div></td>
-    <td width="124"><div align="center"><strong><font size="1" face="Verdana">Fecha de Pago </font></strong></div></td>
-    <td width="124"><div align="center"><strong><font size="1" face="Verdana">Sistema de Pago </font></strong></div></td>
-	<td width="260"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo de Barra </font></strong></div></td>
+    <th>N&uacute;mero</th>
+    <th>Monto de Cuota</th>
+    <th><font size="1">Fecha de Vencimiento </font></th>
+    <th>Monto Pagado</th>
+    <th>Fecha de Pago</th>
+    <th>Sistema de Pago</th>
+	<th>C&oacute;digo de Barra</th>
   </tr>
-  <p>
 <?php 
 	$sql4 = "select * from cuoacuer where nrcuit = $nrcuit and nroacu = $nroacu";
 	$result4 = mysql_query($sql4,$db); 
 	while ($row4=mysql_fetch_array($result4)) {
-		if ($row4['sispag'] == 'E')
-		{
+		if ($row4['sispag'] == 'E') {
 			$sispago = "Electrónico";
-		}
-		else
-		{
-			if ($row4['sispag'] == 'M' || $row3['estacu'] != 1)
-			{
+		} else {
+			if ($row4['sispag'] == 'M' || $row3['estacu'] != 1) {
 				$sispago = "Manual";
-			}
-			else
-			{
+			} else {
 				$sispago = "No Pagado";
 			}
-		}
-		
-		print ("<td width=80><div align=center><font face=Verdana size=1>".$row4['nrocuo']."</font></div></td>");
-		print ("<td width=136><div align=center><font face=Verdana size=1>".$row4['moncuo']."</font></div></td>");
-		print ("<td width=136><div align=center><font face=Verdana size=1>".$row4['fecvto']."</font></div></td>");
-		print ("<td width=121><div align=center><font face=Verdana size=1>".$row4['monpag']."</font></div></td>");
-		print ("<td width=124><div align=center><font face=Verdana size=1>".$row4['fecpag']."</font></div></td>");
-		print ("<td width=124><div align=center><font face=Verdana size=1>".$sispago."</font></div></td>");
-		print ("<td width=260><div align=center><font face=Verdana size=1>".$row4['codbar']."</font></div></td>");
-		print ("</tr>");
-}
-?>
-  </p>
+		} ?>
+		<tr>
+			<td><?php echo $row4['nrocuo'] ?></td>
+			<td><?php echo $row4['moncuo'] ?></td>
+			<td><?php echo $row4['fecvto'] ?></td>
+			<td><?php echo $row4['monpag'] ?></td>
+			<td><?php echo $row4['fecpag'] ?></td>
+			<td><?php echo $sispago ?></td>
+			<td><?php echo $row4['codbar'] ?></td>
+		</tr>
+<?php } ?>
 </table>
 <table width="1024" border="0">
   <tr>
-    <th scope="row"><div align="right">
-      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-    </div></th>
+    <th scope="row">
+    	<div align="right">
+    		<input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+    	</div>
+    </th>
   </tr>
 </table>
 </body>

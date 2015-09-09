@@ -49,12 +49,11 @@ $row = mysql_fetch_array($result);
 <table width="801" border="0">
   <tr>
     <th scope="row"><div align="center">
-      <table border="1" width="365" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+      <table border="1" width="365" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
         <tr>
           <td width="168"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo Cancelado </font></strong></div></td>
           <td width="183"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Per&iacute;odo de Pago </font></font></strong></div></td>
         </tr>
-        <p>
           <?php
 		$sql1 = "select * from peranter where delcod = '$del' and empcod = '$empcod' and anoant = '$ano' and mesant = '$mes'";;
 		$result1 = mysql_query($sql1,$db); 
@@ -64,7 +63,6 @@ $row = mysql_fetch_array($result);
 			print ("</tr>");
 		}
 ?>
-        </p>
       </table>
     </div>
       <div align="center"></div></th>

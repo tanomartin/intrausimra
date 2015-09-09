@@ -27,14 +27,17 @@ $row = mysql_fetch_array($result);
 }
 -->
 </style>
-</head>
+
 <script>
 function mypopup(dire) {
     mywindow = window.open(dire, 'InfoDDJJ', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
 }
 </script>
+
+</head>
+
 <body>
-<table width="800" border="0">
+<table width="800" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="57" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></span></div></td>
     <td width="436"><div align="left">
@@ -48,15 +51,14 @@ function mypopup(dire) {
     <td colspan="3" scope="row"><div align="right" class="Estilo5">U.S.I.M.R.A. </div></td>
   </tr>
 </table>
-<table width="800" border="1" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table width="800" border="1" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <td><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo</font></strong></div></td>
-    <td><div align="center"><strong><font size="1" face="Verdana">Fecha de Deposito </font></strong></div></td>
-    <td><div align="center"><strong><font size="1" face="Verdana"><font size="1">Total Depositado </font> </font></strong></div></td>
-    <td><div align="center"><strong><font size="1" face="Verdana"><font size="1">Sistema de Pago </font> </font></strong></div></td>
-    <td><div align="center"><strong><font size="1" face="Verdana"><font size="1">C&oacute;digo de Barra </font> </font></strong></div></td>
+    <th>Per&iacute;odo</th>
+    <th>Fecha de Deposito </th>
+    <th>Total Depositado</th>
+    <th>Sistema de Pago</th>
+    <th>C&oacute;digo de Barra</th>
   </tr>
-  <p>
   
 <?php
 $sql1 = "select * from pagos where delcod = $delcod and empcod = $empcod and anotra = '$ano' and mestra = '$mes'";;
@@ -67,21 +69,21 @@ while ($row1=mysql_fetch_array($result1)) {
 	}
 	else {
 		$sispago = "Manual";
-	}
-	print ("<td><div align=center><font face=Verdana size=1>".$row1['mestra']."/".$row1['anotra']."</font></div></td>");
-	print ("<td><div align=center><font face=Verdana size=1>".$row1['fecdep']."</font></div></td>");
-	print ("<td><div align=center><font face=Verdana size=1>".$row1['totdep']."</font></div></td>");
-	print ("<td><div align=center><font face=Verdana size=1>".$sispago."</font></div></td>");
-	if ($row1['codbar'] != null) {
-	print ("<td><div align=center><font face=Verdana size=1><a href=javascript:mypopup('ddjj.php?emp=$empcod&control=".$row1['codbar']."')>".$row1['codbar']."</a></font></div></td>");
-	}
-	else {
-	print ("<td><div align=center><font face=Verdana size=1>-</font></div></td>");
-	}
-	print ("</tr>");
-}
-?>
-  </p>
+	} ?>
+	<tr>
+		<td><?php echo $row1['mestra']."/".$row1['anotra'] ?></td>
+		<td><?php echo $row1['fecdep'] ?></td>
+		<td><?php echo $row1['totdep'] ?></td>
+		<td><?php echo $sispago ?></td>
+<?php	if ($row1['codbar'] != null) { ?>
+			<td><a href="javascript:mypopup('ddjj.php?emp=$empcod&control=<?php echo $row1['codbar'] ?>')"><?php echo $row1['codbar'] ?></a></td>
+<?php	} 
+		else { ?>
+			<td>-</td>
+<?php	} ?>
+	 </tr>
+<?php } ?>
+
 </table>
 <table width="800" border="0">
   <tr>

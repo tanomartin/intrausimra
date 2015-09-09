@@ -52,9 +52,7 @@ body {
     </table>
     <table width="1025" border="1">
       <tr>
-        
         <th scope="row">
-          
           <div align="center">
             <input name="submit2" type="submit" value="Enviar">
           </div></th>
@@ -66,7 +64,5 @@ body {
     <input type="button" name="back" value="VOLVER" onClick="location.href='menuControl.php'"/>
   </div>
 </form>
-</table>
-<b><font face="Verdana" size="2"></font></b>
 </body>
 </html> 

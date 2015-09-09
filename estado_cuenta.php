@@ -70,7 +70,6 @@ body {
 .Estilo8 {font-size: 12px; font-weight: bold; }
 -->
 </style>
-</head>
 <script>
 
 function mypopup(dire) {
@@ -78,6 +77,8 @@ function mypopup(dire) {
 }
 
 </script>
+</head>
+
 <body>
 
 <table width="1023" border="0">
@@ -90,7 +91,7 @@ function mypopup(dire) {
   </tr>
 </table>
 
-<table width="1024" border="1" bordercolor="#000000">
+<table width="1024" border="1">
   <tr>
     <td rowspan="2"><div align="center"><strong>A&Ntilde;OS</strong></div></td>
     <td colspan="12"><div align="center"><strong>MESES</strong></div></td>
@@ -151,10 +152,9 @@ while($ano<=$anofin) {
 			}
 		}
 	}
-	print("</tr>");
-	$ano++;
-}
-?>
+	$ano++; ?>
+	 </tr>
+<?php } ?>
 </table>
 
 <table width="1027" border="0">

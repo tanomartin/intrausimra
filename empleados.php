@@ -49,7 +49,7 @@ function mypopup(dire, emple) {
 </head>
 <body>
 <form id="form1" name="form1" method="post" action="empleados.php?empcod=<?php echo $empcod?>">
-<table width="935" border="0">
+<table width="935" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="65" scope="row"><div align="left"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
     <td width="621"> <div align="left">
@@ -76,24 +76,24 @@ function mypopup(dire, emple) {
     </div></td>
   </tr>
 </table>
-<table border="1" width="935" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="935" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
 <tr>
-    <td width="99"><div align="center"><strong><font size="1" face="Verdana">CUIL</font></strong></div></td>
-    <td width="338"><div align="center"><strong><font size="1" face="Verdana">Nombre</font></strong></div></td>
-    <td width="338"><div align="center"><strong><font size="1" face="Verdana">Apellido</font></strong></div></td>
-    <td width="168"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
+    <th>CUIL</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>+ Info </th>
 </tr>
-<p>
+
 <?php 
-while ($row=mysql_fetch_array($result)) {
-	print ("<td width=99><div align=center><font face=Verdana size=1>".$row['nrcuil']."</font></div></td>");
-	print ("<td width=338><font face=Verdana size=1>".$row['nombre']."</font></td>");
-	print ("<td width=338><font face=Verdana size=1>".$row['apelli']."</font></td>");
-	print ("<td width=168><div align=center><font face=Verdana size=1><a href=javascript:mypopup('infoTotalEmpleado.php?cuil=".$row['nrcuil']."&cuit=".$nrocuit."&empcod=".$empcod."',".$row['nrcuil'].")>".FICHA."</a></font></div></td>");
-	print ("</tr>");
-}
-?>
-</p>
+while ($row=mysql_fetch_array($result)) { ?>
+	<tr>
+	<td><b><?php echo $row['nrcuil'] ?></b></td>
+	<td><?php echo $row['nombre'] ?></td>
+	<td><?php echo $row['apelli'] ?></td>
+	<td><a href="javascript:mypopup('infoTotalEmpleado.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrocuit ?>&empcod=<?php echo $empcod ?>','<?php echo $row['nrcuil'] ?>')">FICHA</a></td>
+	</tr>
+<?php } ?>
+
  </table>
 </form>
 

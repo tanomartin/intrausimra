@@ -35,8 +35,8 @@ body {
 
 
 <body>
-<form method="POST" action="elige_cuenta.php">
-<table width="730" border="0">
+<form method="post" action="elige_cuenta.php">
+<table width="730" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="60" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="45" height="45" /></span></div></td>
     <td width="468"> <div align="left">
@@ -58,28 +58,27 @@ body {
           <input name="back2" type="submit" id="back" value="LISTAR" />
         </font></b></div></td>
     <td width="394"><div align="right">
-      <input type="button" name="back" value="VOLVER" onClick="location.href='menu.php'"/>
+      <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
     </div></td>
     </tr>
 </table>
-<table border="1" width="729" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="729" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <td width="55"><div align="center"><strong><font size="1" face="Verdana">C&oacute;digo</font></strong></div></td>
-    <td width="322"><div align="center"><strong><font size="1" face="Verdana">Raz&oacute;n Social </font></strong></div></td>
-    <td width="137"><div align="center"><strong><font size="1" face="Verdana">CUIT</font></strong></div></td>
-    <td width="215"><div align="center"><strong><font size="1" face="Verdana">+ Informacion </font></strong></div></td>
+    <th>C&oacute;digo</th>
+    <th>Raz&oacute;n Social </th>
+    <th>CUIT</th>
+    <th>+ Info </th>
   </tr>
-  <p>
+
 <?php
-while ($row=mysql_fetch_array($result)) {
-	print ("<td width=55><font face=Verdana size=1>".$row['empcod']."</font></td>");
-	print ("<td width=322><font face=Verdana size=1><b>".$row['nombre']."</b></font></div></td>");
-	print ("<td width=137><div align=center><font face=Verdana size=1>".$row['nrcuit']."</font></td>");
-	print ("<td width=215><div align=center><font face=Verdana size=1><a href=estado_cuenta.php?empcod=".$row['empcod'].">".CUENTA."</font></div></td>");
-	print ("</tr>");
-}
-?>
-  </p>
+while ($row=mysql_fetch_array($result)) { ?>
+	<tr>
+		<td><?php echo $row['empcod'] ?></td>
+		<td><b><?php echo $row['nombre'] ?></b></td>
+		<td><?php echo $row['nrcuit'] ?></td>
+		<td><a href="estado_cuenta.php?empcod=<?php echo $row['empcod'] ?>">CUENTA</a></td>
+	</tr>
+<?php } ?>
 </table>
 </form>
 

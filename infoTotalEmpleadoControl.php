@@ -34,7 +34,7 @@ $row=mysql_fetch_array($result);
 </style>
 </head>
 
-<body onUnload="logout.php">
+<body>
 <form id="form1" name="form1" method="post" action="empleados.php">
 <table width="546" border="0">
   <tr>
@@ -46,7 +46,7 @@ $row=mysql_fetch_array($result);
   </tr>
 </table>
 
-<table width="548" border="1">
+<table width="548" border="1" style="margin-bottom: 10px">
   <tr>
     <th width="167" scope="row"><div align="left">Documento</div></th>
     <td width="365"><?php print ($row['tipdoc'].": ".$row['nrodoc']);?></td>
@@ -92,33 +92,30 @@ $row=mysql_fetch_array($result);
 
 <p class="Estilo3">Familiares</p>
 
-<table border="1" width="1025" bordercolorlight="#D08C35" bordercolordark="#D08C35" bordercolor="#CD8C34" cellpadding="2" cellspacing="0">
+<table border="1" width="1025" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
 <tr>
-    <td width="111"><div align="center"><strong><font size="1" face="Verdana">Nombre</font></strong></div></td>
-    <td width="111"><div align="center"><strong><font size="1" face="Verdana">Apellido</font></strong></div></td>
-    <td width="111"><div align="center"><strong><font size="1" face="Verdana">Documento </font></strong></div></td>
-	<td width="111"><div align="center"><strong><font size="1" face="Verdana">Parentesco </font></strong></div></td>
-	<td width="111"><div align="center"><strong><font size="1" face="Verdana">Sexo </font></strong></div></td>
-	<td width="111"><div align="center"><strong><font size="1" face="Verdana">Fecha de Nacimiento </font></strong></div></td>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Documento </th>
+	<th>Parentesco </th>
+	<th>Sexo </th>
+	<th>Fecha de Nacimiento </th>
 </tr>
-<p>
+
 <?php 
 $sql1 = "select * from familia where nrcuit = '$cuit' and nrcuil = '$cuil'";
 $result1 = mysql_query($sql1,$db); 
-while ($row1=mysql_fetch_array($result1)) {
-	print ("<td width=111><font face=Verdana size=1>".$row1['nombre']."</font></td>");
-	print ("<td width=111><font face=Verdana size=1>".$row1['apelli']."</font></td>");
-	print ("<td width=111><font face=Verdana size=1>".$row1['tipdoc'].": ".$row1['nrodoc']."</font></td>");
-	print ("<td width=111><font face=Verdana size=1>".$row1['codpar']."</font></td>");
-	print ("<td width=111><font face=Verdana size=1>".$row1['ssexxo']."</font></td>");
-	print ("<td width=111><font face=Verdana size=1>".$row1['fecnac']."</font></td>");
-	print ("</tr>");
-}
-?>
-</p>
+while ($row1=mysql_fetch_array($result1)) { ?>
+	<tr>
+		<td><?php echo $row1['nombre'] ?></td>
+		<td><?php echo $row1['apelli'] ?></td>
+		<td><?php echo $row1['tipdoc'].": ". $row1['nrodoc'] ?></td>
+		<td><?php echo $row1['codpar'] ?></td>
+		<td><?php echo $row1['ssexxo'] ?></td>
+		<td><?php echo $row1['fecnac'] ?></td>
+	</tr>
+<?php } ?>
 </table>
-
-
 <table width="1024" border="0">
   <tr>
     <th scope="row"><div align="right">

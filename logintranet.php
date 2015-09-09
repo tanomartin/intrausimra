@@ -35,7 +35,7 @@ body {
 	  		  			print("<div align='center' style='color:#FF0000'><b> SU SESIÓN HA CADUCADO VUELVA A INGRESAR </b></div>");
 					}
 	  			} ?></p>
-<form method="POST" action="verificaID.php">
+<form method="post" action="verificaID.php">
 
 <table width="100%" border="0">
   <tr>

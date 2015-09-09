@@ -23,7 +23,7 @@ body {
 <p align="center" class="Estilo3"><b><font face="Verdana" size="2">
   <input name="back" type="submit" id="back" value="VOLVER" onclick= "location.href='logintranet.php'"/>
 </font></b></p>
-<form method="POST" action="verificadorMail.php">
+<form method="post" action="verificadorMail.php">
 
 <table width="100%" border="0">
   <tr>
@@ -65,7 +65,7 @@ body {
     <td height="51"></td>
     <td colspan="2" align="right"><div align="center"><b><font face="Verdana" size="2">
       <input name="back2" type="submit" id="back2" value="ENVIAR" />
-    </a></font></b></div>      <div align="center"></div></td>
+    </font></b></div>      <div align="center"></div></td>
     <td></td>
   </tr>
 </table>

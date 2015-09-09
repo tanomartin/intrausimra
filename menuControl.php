@@ -55,12 +55,7 @@ $row=mysql_fetch_array($result);
   </tr>
   <tr>
     <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center"><strong><span class="Estilo19">Instructivo de uso - </span><a href=javascript:void(window.open("http://www.usimra.com.ar/intranet/tutorialIntra.pdf")) target="_top">Descargar Instructivo </a></strong> </div></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="33">&nbsp;</td>
-    <td colspan="3" align="right" class="Estilo3"><div align="center"><span class="Estilo20"><span class="Estilo19">El instructivo esta en extencion pdf.necesitara el Adobe Reader para poder abrirlo</span> <a href=javascript:void(window.open("http://www.adobe.com/es/products/acrobat/readstep2.html")) target="_top">Descargar aqui Adobe Reader</a></span> </div></td>
+    <td colspan="3" align="right" class="Estilo3"><div align="center"><strong><span class="Estilo19">Instructivo de uso - </span><a href="javascript:void(window.open('http://www.usimra.com.ar/intranet/tutorialIntra.pdf'))" target="_top">Descargar Instructivo </a></strong> </div></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -176,11 +171,9 @@ $row=mysql_fetch_array($result);
   </tr>
 </table>
 <p align="center" class="Estilo11"><a href="consultaControl.php">Envianos tu consulta</a> </p>
-  <label>
   <div align="center">
     <input type="button" name="salir" value="Salir" onclick="location.href='logout.php'"/>
   </div>
-  </label>
 </body>
 </html>
 

@@ -23,7 +23,7 @@ body {
 <p align="center"><img src="LOGOFINAL.jpg" width="342" height="342" /></p>
 <div align="center">
   <p><span class="Estilo3">Su consulta ha sido enviada con exito.  </span></p>
-  <input type="button" name="back" value="VOLVER" onClick="location.href='menu.php'"/>
+  <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
 </div>
 </body>
 </html>
