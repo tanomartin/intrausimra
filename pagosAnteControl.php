@@ -32,7 +32,7 @@ $row = mysql_fetch_array($result);
 </head>
 
 <body>
-<table width="800" border="0">
+<table width="800" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="57" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></span></div></td>
     <td width="436"><div align="left">
@@ -51,18 +51,18 @@ $row = mysql_fetch_array($result);
     <th scope="row"><div align="center">
       <table border="1" width="365" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
         <tr>
-          <td width="168"><div align="center"><strong><font size="1" face="Verdana">Per&iacute;odo Cancelado </font></strong></div></td>
-          <td width="183"><div align="center"><strong><font size="1" face="Verdana"><font size="1">Per&iacute;odo de Pago </font></font></strong></div></td>
+          <th>Per&iacute;odo Cancelado</th>
+          <th>Per&iacute;odo de Pago</th>
         </tr>
           <?php
 		$sql1 = "select * from peranter where delcod = '$del' and empcod = '$empcod' and anoant = '$ano' and mesant = '$mes'";;
 		$result1 = mysql_query($sql1,$db); 
-		while ($row1=mysql_fetch_array($result1)) {
-			print ("<td width=177><div align=center><font face=Verdana size=1>".$row1['mesant']."/".$row1['anoant']."</font></div></td>");
-			print ("<td width=164><div align=center><font face=Verdana size=1>".$row1['mestra']."/".$row1['anotra']."</font></div></td>");
-			print ("</tr>");
-		}
-?>
+		while ($row1=mysql_fetch_array($result1)) { ?>
+			<tr>
+				<td><?php echo $row1['mesant']."/".$row1['anoant'] ?></td>
+				<td><?php echo $row1['mestra']."/".$row1['anotra'] ?></td>
+			</tr>
+<?php	} ?>
       </table>
     </div>
       <div align="center"></div></th>
