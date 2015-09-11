@@ -14,7 +14,8 @@
 .Estilo3 {
 	font-family: Papyrus;
 	font-weight: bold;
-	color: #999999;
+	color: #000000;
+	font-size:20px;
 }
 body {
 	background-color: #E2DDB8;
@@ -24,51 +25,40 @@ body {
 </head>
 
 <body>
+<form method="post" action="verificaID.php">
 <p align="center" class="Estilo3">SISTEMA DE CONSULTA PARA DELEGACIONES</p>
 <p align="center"><img src="LOGOFINAL.jpg" width="342" height="342" /></p>
-<p align="center"><?php if (isset($_GET['err'])) {
+<div align="center">
+<table width="500" border="0" style="text-align:center">
+  <tr>
+  	<td style="color:#FF0000" colspan="2">
+	<?php if (isset($_GET['err'])) {
 	  				$err = $_GET['err'];
 					if ($err == 1) {
-	  		  			print("<div align='center' style='color:#FF0000'><b> USUARIO Y/O CONTRASEÑA INCORRECTOS </b></div>");
+	  		  			print("<p><b> USUARIO Y/O CONTRASEÑA INCORRECTOS </b></p>");
 					}
 					if ($err == 2) {
-	  		  			print("<div align='center' style='color:#FF0000'><b> SU SESIÓN HA CADUCADO VUELVA A INGRESAR </b></div>");
+	  		  			print("<p><b> SU SESIÓN HA CADUCADO VUELVA A INGRESAR </b></p>");
 					}
-	  			} ?></p>
-<form method="post" action="verificaID.php">
-
-<table width="100%" border="0">
-  <tr>
-    <td width="19%"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
-    <td width="30%" align="right"><font face="Verdana" size="2"><b>Usuario:&nbsp;</b></font></td>
-    <td width="30%"><p align="left">
-      <input name="user" type="text" id="user" style="background-color: #ffffff" size="20" />
-    </p></td>
-    <td width="21%">&nbsp;</td>
+	  			} ?>
+	</td>
   </tr>
   <tr>
-    <td width="19%">&nbsp;</td>
-    <td width="30%" align="right"><font face="Verdana" size="2"><b>Contrase&ntilde;a:&nbsp;</b></font></td>
-    <td width="30%"><p align="left">
-      <input name="pass" type="password" id="pass" style="background-color: #FFFFFF" size="20" />
-    </p></td>
-    <td width="21%">&nbsp;</td>
+    <td width="50%" align="right"><font face="Verdana" size="2"><b>Usuario: </b></font></td>
+	<td align="left"><input name="user" type="text" id="user" style="background-color: #ffffff" size="20" /></td>
   </tr>
   <tr>
-    <td width="19%"></td>
-    <td colspan="2" align="right">
-      <div align="center"><input name="ingresar" type="submit" id="ingresar"  value="Ingresar" />
-        </div>
-      </td>
-    <td width="21%"></td>
+    <td align="right"><font face="Verdana" size="2"><b>Contrase&ntilde;a:</b></font></td>
+	<td align="left"> <input name="pass" type="password" id="pass" style="background-color: #FFFFFF" size="20" /></td>
   </tr>
   <tr>
-    <td width="19%"></td>
-    <td align="right" colspan="2"><p align="center"><a href="olvido.php" class="Estilo2">&iquest;OLVIDO
-      SU CONTRASE&Ntilde;A?</a></p></td>
-    <td width="21%"></td>
+    <td height="40" colspan="2"><input name="ingresar" type="submit" id="ingresar"  value="Ingresar" /></td>
+  </tr>
+  <tr>
+    <td height="40" colspan="2"><p align="center"><a href="olvido.php" class="Estilo2">&iquest;OLVIDO SU CONTRASE&Ntilde;A?</a></p></td>
   </tr>
 </table>
+</div>
 </form>
 
 </body>

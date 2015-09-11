@@ -5,14 +5,16 @@
 <title>Recordatorio Contrase&ntilde;a</title>
 <style type="text/css">
 <!--
-.Estilo3 {font-family: Papyrus;
+.Estilo3 {
+	font-family: Papyrus;
 	font-weight: bold;
-	color: #999999;
+	color: #000000;
+	font-size:20px;
 }
 body {
 	background-color: #E2DDB8;
 }
-.Estilo4 {font-size: 12px}
+.Estilo4 {font-size: 16px}
 -->
 </style>
 </head>
@@ -20,54 +22,33 @@ body {
 <body>
 <p align="center" class="Estilo3">SISTEMA DE CONSULTA PARA DELEGACIONES</p>
 <p align="center" class="Estilo3"><img src="LOGOFINAL.jpg" width="342" height="342" /></p>
-<p align="center" class="Estilo3"><b><font face="Verdana" size="2">
-  <input name="back" type="submit" id="back" value="VOLVER" onclick= "location.href='logintranet.php'"/>
-</font></b></p>
+<div align="center" style="margin:10px"><input name="back" type="submit" id="back" value="VOLVER" onclick= "location.href='logintranet.php'"/></div>
 <form method="post" action="verificadorMail.php">
-
-<table width="100%" border="0">
-  <tr>
-    <td>&nbsp;</td>
-    <td colspan="2" align="right"><div align="center" class="Estilo3">
-      <p class="Estilo4">RECORDATORIO DE CONTRASE&Ntilde;A</p>
-      <p><?php if (isset($_GET['err'])) {
-	  				$err = $_GET['err'];
-					if ($err == 1) {
-	  		  			print("<div align='center' style='color:#FF0000'><b> USUARIO Y/O EMAIL INCORRECTOS </b></div>");
-					}
-	  			} ?>
-	  </p>
-    </div></td>
-    <td>&nbsp;</td>
+<table width="100%" border="0" style="text-align:center">
+    <tr>
+  	<td colspan="2" style="color:#FF0000">
+<?php if (isset($_GET['err'])) {
+	  	$err = $_GET['err'];
+		if ($err == 1) {
+	  		print("<p><b> USUARIO Y/O EMAIL INCORRECTOS </b></p>");
+		}
+	   } ?>
+	</td>
   </tr>
   <tr>
-    <td width="20%"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0">&nbsp;</p></td>
-    <td width="30%" align="right"><p align="right"><font face="Verdana" size="2"><b>E-mail Registrado:&nbsp;</b></font></p></td>
-    <td width="30%"><p align="left">
-      <input name="mail" type="text" id="mail" style="background-color: #FFFFFF" size="20" />
-    </p></td>
-    <td width="20%">&nbsp;</td>
-  </tr>
+    <td align="right" width="50%"><font face="Verdana" size="2"><b>E-mail Registrado: </b></font></td>
+    <td align="left"><input name="mail" type="text" id="mail" style="background-color: #FFFFFF" size="20" /></td>
+    </tr>
   <tr>
-    <td width="20%" height="30">&nbsp;</td>
-    <td width="30%" align="right"><p style="word-spacing: 0; margin-top: 0; margin-bottom: 0" align="right"><b><font face="Verdana" size="2">Usuario</font><font face="Verdana" size="2">:&nbsp;</font></b></p>        </td>
-    <td width="30%"><p align="left">
-      <input type="text" name="delcod" id="delcod" style="background-color: #FFFFFF" size="20" />
-    </p></td>
-    <td width="20%">&nbsp;</td>
-  </tr>
+    <td align="right"><b><font face="Verdana" size="2">Usuario: </font></b></td>
+    <td align="left"><input type="text" name="delcod" id="delcod" style="background-color: #FFFFFF" size="20" /></td>
+    </tr>
   <tr>
-    <td width="20%"></td>
     <td colspan="2" align="right"></td>
-    <td width="20%"></td>
-  </tr>
+    </tr>
   <tr>
-    <td height="51"></td>
-    <td colspan="2" align="right"><div align="center"><b><font face="Verdana" size="2">
-      <input name="back2" type="submit" id="back2" value="ENVIAR" />
-    </font></b></div>      <div align="center"></div></td>
-    <td></td>
-  </tr>
+    <td height="51" colspan="2"><input name="back2" type="submit" id="back2" value="ENVIAR" /></td>
+    </tr>
 </table>
 
 </form>
