@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `pagos` (
   `nrcuit` char(11) NOT NULL DEFAULT '0',
   `anotra` int(4) NOT NULL DEFAULT '0',
   `mestra` int(2) NOT NULL DEFAULT '0',
-  `codvar` int(2) NOT NULL DEFAULT '0',
+  `codvar` int(3) NOT NULL DEFAULT '0',
   `fecdep` date NOT NULL DEFAULT '0000-00-00',
   `totdep` decimal(10,2) NOT NULL DEFAULT '0.00',
   `sispag` char(1) NOT NULL DEFAULT '',
