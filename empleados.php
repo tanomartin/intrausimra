@@ -51,31 +51,23 @@ function mypopup(dire, emple) {
 </head>
 <body>
 <form id="form1" name="form1" method="post" action="empleados.php?nrcuit=<?php echo $nrcuit?>">
+<div align="center">
 <table width="900" border="0" style="margin-bottom: 10px">
   <tr>
-    <td width="65" scope="row"><div align="left"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
-    <td width="621"> <div align="left">
-      <p class="Estilo3">NOMINA DE EMPLEADOS</p>
-    </div></td>
-    <td width="235"><div align="right" class="Estilo3"><font size="2" face="Papyrus">
-      <?php print ($row['nombre']); ?>
-    </font></div></td>
+    <td height="88" colspan="2" valign="middle"><div align="left"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="60" height="60" align="middle" />  NOMINA DE EMPLEADOS</span></div></td>
+    <td><div align="right" class="Estilo3"><font size="2" face="Papyrus"><?php print ($row['nombre']); ?></font></div></td>
   </tr>
   <tr>
-    <td scope="row"><div align="left"><b><font face="Verdana" size="2">
-      <input type="button" name="back" value="VOLVER" onclick="location.href='empresas.php'"/>
-    </font></b></div></td>
-    <td scope="row"><div align="center"><font face="Verdana" size="2">Seleccione el orden:<b>
-      <select name="orden" id="orden">
-        <option value="apelli">Apellido</option>
-        <option value="nrcuil">C.U.I.L.</option>
-      </select>
-      </b></font><b><font face="Verdana" size="2">
-        <input name="back2" type="submit" id="back2" value="LISTAR" />
-      </font></b></div></td>
-    <td scope="row"><div align="right">
-      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+    <td width="300"><div align="left"><input type="button" name="back" value="VOLVER" onclick="location.href='empresas.php'"/></div></td>
+    <td width="300"><div align="center">
+	      <font face="Verdana" size="2">Seleccione el orden:</font>
+	      <select name="orden" id="orden">
+	        <option value="apelli">Apellido</option>
+	        <option value="nrcuil">C.U.I.L.</option>
+	      </select>
+	      <input name="back2" type="submit" id="back2" value="LISTAR" />
     </div></td>
+    <td width="300"><div align="right"><input type="button" name="imprimir" value="Imprimir" onclick="window.print();" /></div></td>
   </tr>
 </table>
 <table border="1" width="900" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
@@ -101,6 +93,7 @@ function mypopup(dire, emple) {
 <?php } ?>
 
  </table>
+ </div>
 </form>
 
 </body>

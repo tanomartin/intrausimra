@@ -78,7 +78,7 @@ function mypopup(dire) {
 </head>
 
 <body>
-
+<div align="center">
 <table width="1023" border="0">
   <tr>
     <td width="57" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="45" height="45" /></span></div></td>
@@ -89,24 +89,24 @@ function mypopup(dire) {
   </tr>
 </table>
 
-<table width="1024" border="1">
+<table width="1024" border="1" style="text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 10px">
   <tr>
-    <td rowspan="2"><div align="center"><strong>A&Ntilde;OS</strong></div></td>
-    <td colspan="12"><div align="center"><strong>MESES</strong></div></td>
+    <td rowspan="2"><strong>A&Ntilde;OS</strong></td>
+    <td colspan="12"><strong>MESES</strong></td>
   </tr>
   <tr>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Enero</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Febrero</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Marzo</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Abril</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Mayo</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Junio</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Julio</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Agosto</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Setiembre</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Octubre</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Noviembre</font></strong></div></td>
-    <td width="81"><div align="center"><strong><font size="1" face="Verdana">Diciembre</font></strong></div></td>
+    <td width="81"><strong>Enero</strong></td>
+    <td width="81"><strong>Febrero</strong></td>
+    <td width="81"><strong>Marzo</strong></td>
+    <td width="81"><strong>Abril</strong></td>
+    <td width="81"><strong>Mayo</strong></td>
+    <td width="81"><strong>Junio</strong></td>
+    <td width="81"><strong>Julio</strong></td>
+    <td width="81"><strong>Agosto</strong></td>
+    <td width="81"><strong>Setiembre</strong></td>
+    <td width="81"><strong>Octubre</strong></td>
+    <td width="81"><strong>Noviembre</strong></td>
+    <td width="81"><strong>Diciembre</strong></td>
   </tr>
 <?php
 $anoactual =  date("Y");
@@ -122,66 +122,61 @@ $mesfin = $mesacutal;
 $ano = $anoinicio;
 $anofin = $anoactual;
 
-while($ano<=$anofin) {
-?>
-  <tr>
-    <td> <div align="left"><strong><?php echo $ano; ?></strong></div></td>
-<?php
-	for($mes = 1; $mes < 13; $mes++) { 
-		if ($ano == $anoinicio && $mes < $mesinicio) {
-			print ("<td width=81><div align=center><font face=Verdana size=1>-</font></div></td>");
-		} else {
-			if ($ano == $anofin && $mes > $mesfin) {
-				print ("<td width=81><div align=center><font face=Verdana size=1>-</font></div></td>");
-			} else {
-				$descri = estado($ano,$mes,$db);
-				if ($descri == "PAGO") {
-					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagos.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
-				}
-				if ($descri == "ACUER.") {
-					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('acuerdos.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
-				}
-				if ($descri == "P.DIF.") {
-					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosAnte.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
-				}
-				if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) {
-					print ("<td width=81><div align=center><font face=Verdana size=1>$descri</font></div></td>");
+	while($ano<=$anofin) { ?>
+	  <tr>
+	    <td> <div align="left"><strong><?php echo $ano; ?></strong></div></td>
+	<?php
+		for($mes = 1; $mes < 13; $mes++) { 
+			if ($ano == $anoinicio && $mes < $mesinicio) { ?>
+				<td>-</td>
+	<?php	} else {
+				if ($ano == $anofin && $mes > $mesfin) { ?>
+					<td>-</td>
+	<?php		} else {
+					$descri = estado($ano,$mes,$db);
+					if ($descri == "PAGO") { ?>
+						<td><a href="javascript:mypopup('pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+	<?php			}
+					if ($descri == "ACUER.") { ?>
+						<td><a href="javascript:mypopup('acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+	<?php			}
+					if ($descri == "P.DIF.") { ?>
+						<td><a href="javascript:mypopup('pagosAnte.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+	<?php			}
+					if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
+						<td><?php echo $descri ?></td>
+	<?php			}
 				}
 			}
 		}
-	}
-	$ano++; ?>
-	 </tr>
+		$ano++; ?>
+		 </tr>
 <?php } ?>
 </table>
 
-<table width="1027" border="0">
+<table width="1027" style="margin-top: 10px">
   <tr>
-    <th width="502" scope="row"><div align="left"><b><font face="Verdana" size="2">
+    <td align="left">
 		<input type="button" name="back" value="VOLVER" onclick="location.href='elige_cuenta.php'"/>
-    </font></b></div></th>
-    <td width="515"><div align="right">
-      <p>
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-        </p>
-      </div></td>
-  </tr>
-  <tr>
-    <th scope="row"><div align="left"><span class="Estilo5">*ACUER. = PERIODO EN ACUERDO </span></div></th>
-    <td><div align="left" class="Estilo6">
-      <div align="left"><span class="Estilo5">*S. DJ.= PERIODO SIN DDJJ </span></div>
-    </div></td>
-  </tr>
-  <tr>
-    <th scope="row"><div align="left"><span class="Estilo5">*P.DIF. = PAGO DIFERENCIADO</span></div></th>
-    <td><div align="left"><span class="Estilo8">*NO PAGO = PERIODO NO PAGO CON DDJJ </span></div></td>
-  </tr>
-  <tr>
-    <th scope="row"><div align="left"><span class="Estilo5">*JUICI. = PERIODO EN JUICIO </span></div></th>
-    <td><div align="left"><span class="Estilo8">*PAGO = PERIODO PAGO CON DDJJ </span></div></td>
+    </td>
+    <td></td>
+    <td align="right">
+    	<input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+    </td>
   </tr>
 </table>
-<p>&nbsp;</p>
-<p><b><font face="Verdana" size="2">  </font></b></p>
+<table width="1027" style="margin-top: 10px">
+  <tr>
+    <td><div align="left"><span class="Estilo5"><b>*ACUER.</b> = PERIODO EN ACUERDO </span></div></td>
+    <td><div align="center"><span class="Estilo5"><b>*S. DJ.</b>= PERIODO SIN DDJJ </span></div></td>
+    <td><div align="right"><span class="Estilo5"><b>*P.DIF.</b> = PAGO DIFERENCIADO</span></div></td>
+  </tr>
+  <tr>
+    <td><div align="left"><span class="Estilo5"><b>*NO PAGO</b> = PERIODO NO PAGO CON DDJJ </span></div></td>
+    <td><div align="center"><span class="Estilo5"><b>*JUICI.</b> = PERIODO EN JUICIO </span></div></td>
+    <td><div align="right"><span class="Estilo5"><b>*PAGO</b> = PERIODO PAGO CON DDJJ </span></div></td>
+  </tr>
+</table>
+</div>
 </body>
 </html>

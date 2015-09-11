@@ -41,52 +41,49 @@ function mypopup(dire, empre) {
 </head>
 <body>
 <form id="form1" name="form1" method="post" action="empresas.php">
-<table width="1025" border="0" style="margin-bottom: 10px">
-  <tr>
-    <td width="75" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
-    <td colspan="3" scope="row"><div align="left">
-      <p class="Estilo3">EMPRESAS</p>
-    </div></td>
-    <td width="298"><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
-  </tr>
-  <tr>
-    <td colspan="3"><div align="left"><b><font face="Verdana" size="2">
-      <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
-    </font></b></div></td>
-    <td width="405">
-      
-        <div align="center">Seleccione el orden:
-
-          <select name="orden" id="orden">
-            <option value="nombre" >Nombre</option>
-            <option value="nrcuit">C.U.I.T.</option>
-          </select>
-          <b><font face="Verdana" size="2">
-          <input name="back2" type="submit" id="back2" value="LISTAR" />
-        </font></b></div>
-      <div align="center"></div></td>
-    <td><div align="right">
-      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-    </div></td>
-  </tr>
-</table>
-<table border="1" width="1025" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
-  <tr>
-  	<th>CUIT</th>
-    <th>Raz&oacute;n Social </th>
-    <th>+ Info</th>
-	<th>Nómina de Empleados </th>
-  </tr>
-<?php
-while ($row=mysql_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo $row['nrcuit'] ?></td>
-		<td><b><?php echo $row['nombre'] ?></b></td>
-		<td><a href="javascript:mypopup('infoTotal.php?nrcuit=<?php echo $row['nrcuit'] ?>','<?php echo $row['empcod'] ?>')">FICHA</a></td>
-		<td><a href="empleados.php?nrcuit=<?php echo $row['nrcuit'] ?>">NOMINA</a></td>
-	</tr>
-<?php } ?>
-</table>
+<div align="center">
+	<table width="900" border="0" style="margin-bottom: 10px">
+	  <tr>
+	    <td height="88" colspan="4" class="Estilo3" valign="middle"><img src="LOGOFINAL.jpg" width="60" height="60" align="middle" />  EMPRESAS</td>
+	    <td class="Estilo4"><div align="right">U.S.I.M.R.A. </div></td>
+	  </tr>
+	  <tr>
+	    <td colspan="3"><div align="left"><b><font face="Verdana" size="2">
+	      <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
+	    </font></b></div></td>
+	    <td width="405">    
+	        <div align="center">Seleccione el orden:
+	          <select name="orden" id="orden">
+	            <option value="nombre" >Nombre</option>
+	            <option value="nrcuit">C.U.I.T.</option>
+	          </select>
+	          <b><font face="Verdana" size="2">
+	          <input name="back2" type="submit" id="back2" value="LISTAR" />
+	        </font></b></div>
+	      <div align="center"></div></td>
+	    <td><div align="right">
+	      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+	    </div></td>
+	  </tr>
+	</table>
+	<table border="1" width="900" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
+	  <tr>
+	  	<th>CUIT</th>
+	    <th>Raz&oacute;n Social </th>
+	    <th>+ Info</th>
+		<th>Nómina de Empleados </th>
+	  </tr>
+	<?php
+	while ($row=mysql_fetch_array($result)) { ?>
+		<tr>
+			<td><?php echo $row['nrcuit'] ?></td>
+			<td><?php echo $row['nombre'] ?></td>
+			<td><a href="javascript:mypopup('infoTotal.php?nrcuit=<?php echo $row['nrcuit'] ?>','<?php echo $row['empcod'] ?>')">FICHA</a></td>
+			<td><a href="empleados.php?nrcuit=<?php echo $row['nrcuit'] ?>">NOMINA</a></td>
+		</tr>
+	<?php } ?>
+	</table>
+</div>
 </form>
 </body>
 </html>

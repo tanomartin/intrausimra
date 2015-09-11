@@ -36,48 +36,47 @@ body {
 
 <body>
 <form method="post" action="elige_cuenta.php">
-<table width="730" border="0" style="margin-bottom: 10px">
-  <tr>
-    <td width="60" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="45" height="45" /></span></div></td>
-    <td width="468"> <div align="left">
-      <p class="Estilo3">SELECCI&Oacute;N DE EMPRESA</p>
-    </div></td>
-    <td width="188"><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
-  </tr>
-</table>
-
-<table width="729" border="0">
-  <tr>
-    <td width="325"><div align="left">Seleccione el orden: 
-      <select name="orden" id="orden">
-        <option value="nombre" >Nombre</option>
-        <option value="nrcuit">C.U.I.T.</option>
-        </select>
-        <b><font face="Verdana" size="2">
-          <input name="back2" type="submit" id="back" value="LISTAR" />
-        </font></b></div></td>
-    <td width="394"><div align="right">
-      <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
-    </div></td>
-    </tr>
-</table>
-<table border="1" width="729" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
-  <tr>
-  	<th>CUIT</th>
-    <th>Raz&oacute;n Social </th>
-    <th>+ Info </th>
-  </tr>
-
-<?php
-while ($row=mysql_fetch_array($result)) { ?>
-	<tr>
-		<td><?php echo $row['nrcuit'] ?></td>
-		<td><b><?php echo $row['nombre'] ?></b></td>
-		<td><a href="estado_cuenta.php?nrcuit=<?php echo $row['nrcuit'] ?>">CUENTA</a></td>
-	</tr>
-<?php } ?>
-</table>
+<div align="center">
+	<table width="700" border="0" style="margin-bottom: 10px">
+	  <tr>
+	    <td width="40"><div align="center"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="60" height="60" /></span></div></td>
+	    <td><p class="Estilo3" align="left">SELECCI&Oacute;N DE EMPRESA</p></td>
+	    <td><div align="right" class="Estilo4">U.S.I.M.R.A. </div></td>
+	  </tr>
+	</table>
+	
+	<table width="700" border="0" style="margin-bottom: 10px">
+	  <tr>
+	    <td width="325"><div align="left">Seleccione el orden: 
+	      <select name="orden" id="orden">
+	        <option value="nombre" >Nombre</option>
+	        <option value="nrcuit">C.U.I.T.</option>
+	        </select>
+	        <b><font face="Verdana" size="2">
+	          <input name="back2" type="submit" id="back" value="LISTAR" />
+	        </font></b></div></td>
+	    <td width="394"><div align="right">
+	      <input type="button" name="back" value="VOLVER" onclick="location.href='menu.php'"/>
+	    </div></td>
+	    </tr>
+	</table>
+	<table border="1" width="700" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
+	  <tr>
+	  	<th>CUIT</th>
+	    <th>Raz&oacute;n Social </th>
+	    <th>+ Info </th>
+	  </tr>
+	
+	<?php
+	while ($row=mysql_fetch_array($result)) { ?>
+		<tr>
+			<td><?php echo $row['nrcuit'] ?></td>
+			<td><?php echo $row['nombre'] ?></td>
+			<td><a href="estado_cuenta.php?nrcuit=<?php echo $row['nrcuit'] ?>">CUENTA</a></td>
+		</tr>
+	<?php } ?>
+	</table>
+</div>
 </form>
-
 </body>
 </html>
