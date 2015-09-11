@@ -15,11 +15,7 @@ if ($cant > 0) {
 	} else {
 		$_SESSION['delcod'] = $delcod;
 		$_SESSION['aut'] = 'pepepascual';
-		if ($delcod >= "3200") {
-			$redire = 'location:menuControl.php';	
-		} else {
-			$redire = 'location:menu.php';
-		}
+		$redire = 'location:menu.php';
 	}
 } else {
 	$redire = 'location:logintranet.php?err=1';

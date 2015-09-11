@@ -1,8 +1,8 @@
 <?php include ("verificaSesion.php");
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['nrcuit'];
 $ano = $_GET['ano'];
 $mes = $_GET['mes'];
-$sql = "select * from empresa where delcod = $delcod and empcod = $empcod";
+$sql = "select * from empresa where delcod = $delcod and nrcuit = $nrcuit";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 ?>
@@ -61,7 +61,7 @@ function mypopup(dire) {
   </tr>
   
 <?php
-$sql1 = "select * from pagos where delcod = $delcod and empcod = $empcod and anotra = '$ano' and mestra = '$mes'";;
+$sql1 = "select * from pagos where nrcuit = $nrcuit and anotra = '$ano' and mestra = '$mes'";;
 $result1 = mysql_query($sql1,$db); 
 while ($row1=mysql_fetch_array($result1)) {
 	if ($row1['sispag'] == 'E') {
@@ -76,7 +76,7 @@ while ($row1=mysql_fetch_array($result1)) {
 		<td><?php echo $row1['totdep'] ?></td>
 		<td><?php echo $sispago ?></td>
 <?php	if ($row1['codbar'] != null) { ?>
-			<td><a href="javascript:mypopup('ddjj.php?emp=$empcod&control=<?php echo $row1['codbar'] ?>')"><?php echo $row1['codbar'] ?></a></td>
+			<td><a href="javascript:mypopup('ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>')"><?php echo $row1['codbar'] ?></a></td>
 <?php	} 
 		else { ?>
 			<td>-</td>

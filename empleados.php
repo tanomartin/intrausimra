@@ -4,15 +4,17 @@ if (isset($_POST['orden'])) {
 } else {
 	$orden = "apelli";
 }
-$empcod = $_GET['empcod'];
-$sql = "select * from empresa where delcod = $delcod and empcod = '$empcod'";
+$nrcuit = $_GET['nrcuit'];
+$sql = "select * from empresa where delcod = $delcod and nrcuit = $nrcuit";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 
-$nrocuit = $row['nrcuit'];
+$nrcuit = $row['nrcuit'];
 mysql_select_db('ospimrem_newaplicativo');
-$sql = "select * from empleados where nrcuit = '$nrocuit' order by $orden";
+$sql = "select * from empleados where nrcuit = $nrcuit order by $orden";
 $result = mysql_query($sql,$db); 
+$cantEmp = mysql_num_rows($result);
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,8 +50,8 @@ function mypopup(dire, emple) {
 
 </head>
 <body>
-<form id="form1" name="form1" method="post" action="empleados.php?empcod=<?php echo $empcod?>">
-<table width="935" border="0" style="margin-bottom: 10px">
+<form id="form1" name="form1" method="post" action="empleados.php?nrcuit=<?php echo $nrcuit?>">
+<table width="900" border="0" style="margin-bottom: 10px">
   <tr>
     <td width="65" scope="row"><div align="left"><span class="Estilo3"><img src="LOGOFINAL.jpg" width="47" height="49" /></span></div></td>
     <td width="621"> <div align="left">
@@ -76,21 +78,25 @@ function mypopup(dire, emple) {
     </div></td>
   </tr>
 </table>
-<table border="1" width="935" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
+<table border="1" width="900" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
 <tr>
     <th>CUIL</th>
-    <th>Nombre</th>
-    <th>Apellido</th>
+    <th>Apellido, Nombre</th>
     <th>+ Info </th>
 </tr>
 
 <?php 
-while ($row=mysql_fetch_array($result)) { ?>
+	if ($cantEmp > 0) {
+		while ($row=mysql_fetch_array($result)) { ?>
+			<tr>
+			<td><b><?php echo $row['nrcuil'] ?></b></td>
+			<td><?php echo $row['apelli'].", ".$row['nombre']  ?></td>
+			<td><a href="javascript:mypopup('infoTotalEmpleado.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrcuit ?>','<?php echo $row['nrcuil'] ?>')">FICHA</a></td>
+			</tr>
+	<?php }
+ 	} else { ?>
 	<tr>
-	<td><b><?php echo $row['nrcuil'] ?></b></td>
-	<td><?php echo $row['nombre'] ?></td>
-	<td><?php echo $row['apelli'] ?></td>
-	<td><a href="javascript:mypopup('infoTotalEmpleado.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrocuit ?>&empcod=<?php echo $empcod ?>','<?php echo $row['nrcuil'] ?>')">FICHA</a></td>
+		<td colspan="4"><b>No tiene cargada nomina de empleados</b></td>
 	</tr>
 <?php } ?>
 

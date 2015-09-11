@@ -1,21 +1,19 @@
 <?php include ("verificaSesion.php");
-$empcod = $_GET['empcod'];
-$sql = "select * from empresa where delcod = $delcod and empcod = $empcod";
+$nrcuit = $_GET['nrcuit'];
+$sql = "select * from empresa where delcod = $delcod and nrcuit = $nrcuit";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_assoc($result);
-
-$nrcuit = $row['nrcuit'];
 $delcod = $row['delcod'];
 
 function estado($ano, $me, $db) {	
 	global $empcod, $delcod, $nrcuit;
-	$sql1 = "select * from pagos where delcod = $delcod and empcod = $empcod and anotra = $ano and mestra = $me";
+	$sql1 = "select * from pagos where nrcuit = $nrcuit and anotra = $ano and mestra = $me";
 	$result1 = mysql_query($sql1,$db); 
 	$row1 = mysql_fetch_array($result1);
 	if($row1!=null) {
 		$des = "PAGO";
 	} else { 
-		$sql6 = "select * from juicios where delcod = $delcod and empcod = $empcod and anojui = $ano and mesjui = $me" ;
+		$sql6 = "select * from juicios where nrcuit = $nrcuit and anojui = $ano and mesjui = $me" ;
 		 $result6 = mysql_query($sql6,$db); 
 		 $row6 = mysql_fetch_array($result6);
 		 if ($row6 != null) {
@@ -27,13 +25,13 @@ function estado($ano, $me, $db) {
 			if($row2!=null) {
 				$des = "ACUER.";
 			} else {
-				$sql3 = "select * from peranter where delcod = $delcod and empcod = $empcod and anoant = $ano and mesant = $me" ;
+				$sql3 = "select * from peranter where nrcuit = $nrcuit and anoant = $ano and mesant = $me" ;
 				$result3 = mysql_query($sql3,$db); 
 				$row3 = mysql_fetch_array($result3);
 				if($row3!=null) {
 					$des = "P.DIF.";
 				} else {
-					$sql9 = "select * from ddjjnopa where delcod = $delcod and empcod = $empcod and perano = $ano and permes = $me" ;
+					$sql9 = "select * from ddjjnopa where nrcuit = $nrcuit and perano = $ano and permes = $me" ;
 					$result9 = mysql_query($sql9,$db); 
 					$row9 = mysql_fetch_array($result9);
 					if($row9!=null) {
@@ -138,13 +136,13 @@ while($ano<=$anofin) {
 			} else {
 				$descri = estado($ano,$mes,$db);
 				if ($descri == "PAGO") {
-					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagos.php?empcod=".$empcod."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
+					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagos.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
 				}
 				if ($descri == "ACUER.") {
 					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('acuerdos.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
 				}
 				if ($descri == "P.DIF.") {
-					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosAnte.php?empcod=".$empcod."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
+					print ("<td width=81><div align=center><font face=Verdana size=1><a href=javascript:mypopup('pagosAnte.php?nrcuit=".$nrcuit."&ano=".$ano."&mes=".$mes."')>".$descri."</a></font></div></td>");
 				}
 				if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) {
 					print ("<td width=81><div align=center><font face=Verdana size=1>$descri</font></div></td>");

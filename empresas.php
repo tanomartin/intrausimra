@@ -2,7 +2,7 @@
 if (isset($_POST['orden'])) {
 	$orden = $_POST['orden'];
 } else {
-	$orden = "empcod";
+	$orden = "nrcuit";
 }
 $sql = "select * from empresa where delcod = $delcod order by $orden";
 $result = mysql_query($sql,$db); 
@@ -59,7 +59,6 @@ function mypopup(dire, empre) {
 
           <select name="orden" id="orden">
             <option value="nombre" >Nombre</option>
-            <option value="empcod">C&oacute;digo</option>
             <option value="nrcuit">C.U.I.T.</option>
           </select>
           <b><font face="Verdana" size="2">
@@ -73,20 +72,18 @@ function mypopup(dire, empre) {
 </table>
 <table border="1" width="1025" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <th>C&oacute;digo</th>
+  	<th>CUIT</th>
     <th>Raz&oacute;n Social </th>
-    <th>CUIT</th>
-    <th>+ Informacion </th>
+    <th>+ Info</th>
 	<th>Nómina de Empleados </th>
   </tr>
 <?php
 while ($row=mysql_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['empcod'] ?></td>
-		<td><b><?php echo $row['nombre'] ?></b></td>
 		<td><?php echo $row['nrcuit'] ?></td>
-		<td><a href="javascript:mypopup('infoTotal.php?empcod=<?php echo $row['empcod'] ?>','<?php echo $row['empcod'] ?>')">FICHA</a></td>
-		<td><a href="empleados.php?empcod=<?php echo $row['empcod'] ?>">NOMINA</a></td>
+		<td><b><?php echo $row['nombre'] ?></b></td>
+		<td><a href="javascript:mypopup('infoTotal.php?nrcuit=<?php echo $row['nrcuit'] ?>','<?php echo $row['empcod'] ?>')">FICHA</a></td>
+		<td><a href="empleados.php?nrcuit=<?php echo $row['nrcuit'] ?>">NOMINA</a></td>
 	</tr>
 <?php } ?>
 </table>

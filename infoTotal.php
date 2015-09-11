@@ -1,7 +1,7 @@
 <?php include ("verificaSesion.php");
 
-$empcod = $_GET['empcod'];
-$sql = "select e.*, p.nombre as provi from empresa e, provin p where e.delcod = $delcod and e.empcod = $empcod and e.provle = p.codigo";
+$nrcuit = $_GET['nrcuit'];
+$sql = "select e.*, p.nombre as provi from empresa e, provin p where e.delcod = $delcod and e.nrcuit = $nrcuit and e.provle = p.codigo";
 $result = mysql_query($sql,$db); 
 $row=mysql_fetch_array($result);
 ?>

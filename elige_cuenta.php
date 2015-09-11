@@ -2,7 +2,7 @@
 if (isset($_POST['orden'])) {
 	$orden = $_POST['orden'];
 } else {
-	$orden = "empcod";
+	$orden = "nrcuit";
 }
 
 $sql = "select * from empresa where delcod = $delcod order by $orden";
@@ -51,7 +51,6 @@ body {
     <td width="325"><div align="left">Seleccione el orden: 
       <select name="orden" id="orden">
         <option value="nombre" >Nombre</option>
-        <option value="empcod" selected="selected">C&oacute;digo</option>
         <option value="nrcuit">C.U.I.T.</option>
         </select>
         <b><font face="Verdana" size="2">
@@ -64,19 +63,17 @@ body {
 </table>
 <table border="1" width="729" style="border-color: #CD8C34; text-align: center; font-family: Verdana, Geneva, sans-serif; font-size: 11px" cellpadding="2" cellspacing="0">
   <tr>
-    <th>C&oacute;digo</th>
+  	<th>CUIT</th>
     <th>Raz&oacute;n Social </th>
-    <th>CUIT</th>
     <th>+ Info </th>
   </tr>
 
 <?php
 while ($row=mysql_fetch_array($result)) { ?>
 	<tr>
-		<td><?php echo $row['empcod'] ?></td>
-		<td><b><?php echo $row['nombre'] ?></b></td>
 		<td><?php echo $row['nrcuit'] ?></td>
-		<td><a href="estado_cuenta.php?empcod=<?php echo $row['empcod'] ?>">CUENTA</a></td>
+		<td><b><?php echo $row['nombre'] ?></b></td>
+		<td><a href="estado_cuenta.php?nrcuit=<?php echo $row['nrcuit'] ?>">CUENTA</a></td>
 	</tr>
 <?php } ?>
 </table>

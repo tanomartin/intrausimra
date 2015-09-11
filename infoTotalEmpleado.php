@@ -1,13 +1,12 @@
 <?php include ("verificaSesion.php");
-$empcod = $_GET['empcod'];
 $cuit = $_GET['cuit'];
 $cuil = $_GET['cuil'];
-$sql0 = "select * from empresa e where e.delcod = $delcod and e.empcod = $empcod";
+$sql0 = "select * from empresa e where e.delcod = $delcod and e.nrcuit = $cuit";
 $result0 = mysql_query($sql0,$db); 
 $row0 = mysql_fetch_array($result0);
 
 mysql_select_db('ospimrem_newaplicativo');
-$sql = "select e.*, c.descri as catego, p.descripcion as provi from empleados e, empresa a, categorias c, provincia p where e.nrcuit = '$cuit' and e.nrcuil = '$cuil' and e.nrcuit = a.nrcuit and a.rramaa = c.codram and e.catego = c.codcat and e.provin = p.id";
+$sql = "select e.*, c.descri as catego, p.descripcion as provi from empleados e, empresa a, categorias c, provincia p where e.nrcuit = $cuit and e.nrcuil = $cuil and e.nrcuit = a.nrcuit and a.rramaa = c.codram and e.catego = c.codcat and e.provin = p.id";
 $result = mysql_query($sql,$db); 
 $row=mysql_fetch_array($result);
 ?>
@@ -102,15 +101,22 @@ $row=mysql_fetch_array($result);
 <?php 
 $sql1 = "select * from familia where nrcuit = '$cuit' and nrcuil = '$cuil'";
 $result1 = mysql_query($sql1,$db); 
-while ($row1=mysql_fetch_array($result1)) { ?>
-	<tr>
-	<td><?php echo $row1['nombre'] ?></td>
-	<td><?php echo $row1['apelli'] ?></td>
-	<td><?php echo $row1['tipdoc'].": ".$row1['nrodoc'] ?></td>
-	<td><?php echo $row1['codpar'] ?></td>
-	<td><?php echo $row1['ssexxo'] ?></td>
-	<td><?php echo $row1['fecnac'] ?></td>
-	</tr>
+$cantFam = mysql_num_rows($result1);
+	if ($cantFam > 0) {
+	while ($row1=mysql_fetch_array($result1)) { ?>
+		<tr>
+		<td><?php echo $row1['nombre'] ?></td>
+		<td><?php echo $row1['apelli'] ?></td>
+		<td><?php echo $row1['tipdoc'].": ".$row1['nrodoc'] ?></td>
+		<td><?php echo $row1['codpar'] ?></td>
+		<td><?php echo $row1['ssexxo'] ?></td>
+		<td><?php echo $row1['fecnac'] ?></td>
+		</tr>
+	<?php } 
+	  } else { ?>
+		<tr>
+			<td colspan="6"><b>No tiene cargado familiares</b></td>
+		</tr>
 <?php } ?>
 </table>
 

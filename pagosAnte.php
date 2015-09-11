@@ -1,8 +1,8 @@
 <?php include ("verificaSesion.php");
-$empcod = $_GET['empcod'];
+$nrcuit = $_GET['nrcuit'];
 $ano = $_GET['ano'];
 $mes = $_GET['mes'];
-$sql = "select * from empresa where delcod = $delcod and empcod = $empcod";
+$sql = "select * from empresa where delcod = $delcod and nrcuit = $nrcuit";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 ?>
@@ -53,7 +53,7 @@ $row = mysql_fetch_array($result);
           <th>Per&iacute;odo de Pago </th>
         </tr>
           <?php
-			$sql1 = "select * from peranter where delcod = $delcod and empcod = '$empcod' and anoant = '$ano' and mesant = '$mes'";;
+			$sql1 = "select * from peranter where nrcuit = $nrcuit and anoant = '$ano' and mesant = '$mes'";;
 			$result1 = mysql_query($sql1,$db); 
 			while ($row1=mysql_fetch_array($result1)) { ?>
 				<tr>

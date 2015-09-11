@@ -1,7 +1,7 @@
 <?php include ("verificaSesion.php");
-$empcod = $_GET['emp'];
+$nrcuit = $_GET['nrcuit'];
 $control = $_GET['control'];
-$sql = "select * from empresa where delcod = $delcod and empcod = '$emp'";
+$sql = "select * from empresa where delcod = $delcod and nrcuit = $nrcuit";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
 ?>
@@ -54,6 +54,7 @@ $row = mysql_fetch_array($result);
     <th>Aporte 0.60 </th>
     <th>Aporte 1.00 </th>
     <th>Aporte 1.50 </th>
+    <th>Total </th>
   </tr>
 
 <?php
@@ -75,23 +76,25 @@ while ($row3 = mysql_fetch_array($result3)) { ?>
 			<td><?php echo $row3['apo060'] ?></td>
 			<td><?php echo $row3['apo100'] ?></td>
 			<td><?php echo $row3['apo150'] ?></td>
+			<td><?php echo $row3['apo060'] +  $row3['apo100'] + $row3['apo150'] ?></td>
 		</tr>
 <?php } ?>
    <tr class="Estilo4">
 	    <th colspan="3"><div align="right" class="Estilo4 Estilo6">TOTALES </div></th>
-	    <th><?php print($row4['remune']); ?></th>
-	    <th><?php print($row4['apo060']); ?></th>
-	    <th><?php print($row4['apo100']); ?></th>
-	    <th><?php print($row4['apo150']); ?></th>
+	    <th><?php echo $row4['remune'] ?></th>
+	    <th><?php echo $row4['apo060'] ?></th>
+	    <th><?php echo $row4['apo100'] ?></th>
+	    <th><?php echo $row4['apo150'] ?></th>
+	    <th><?php echo $row4['apo060'] + $row4['apo100'] + $row4['apo150']   ?></th>
    </tr>
    
    <tr>
-    <th colspan="6"><div align="right" class="Estilo7">RECARGO</div></th>
+    <th colspan="7"><div align="right" class="Estilo7">RECARGO</div></th>
     <th><?php print($row4['recarg']); ?></th>
   </tr>
    
    <tr>
-    <th colspan="6"><div align="right" class="Estilo7">TOTAL DEPOSITADO </div></th>
+    <th colspan="7"><div align="right" class="Estilo7">TOTAL DEPOSITADO </div></th>
     <th ><?php print($row4['totapo']); ?></th>
   </tr>
    
@@ -105,7 +108,5 @@ while ($row3 = mysql_fetch_array($result3)) { ?>
     </div></th>
   </tr>
 </table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 </body>
 </html>
