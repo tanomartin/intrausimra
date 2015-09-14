@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `peranter` (
   `anotra` int(4) NOT NULL DEFAULT '0',
   `mesant` int(2) NOT NULL DEFAULT '0',
   `anoant` int(4) NOT NULL DEFAULT '0',
-  `varant` int(1) NOT NULL DEFAULT '0',
+  `varant` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`nrcuit`,`mestra`,`anotra`,`mesant`,`anoant`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
