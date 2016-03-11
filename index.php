@@ -45,7 +45,6 @@
 						</div>
 					</div>
 				</div>
-				<span id="aver"></span>
 			</form>
 		</div>
 	</div>
