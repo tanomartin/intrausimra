@@ -16,7 +16,7 @@ if(empty($_SESSION) || $_SESSION['delcod'] == null || $_SESSION['delcod'] == '')
 	}
 }
 if ($redirec) {
-	header("Location: logout.php?error=2");
+	header("Location: logout.php");
 	exit(0);
 }
 ?>

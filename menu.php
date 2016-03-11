@@ -44,7 +44,7 @@ $row=mysql_fetch_array($result);
 
 
 <p align="center" class="Estilo3">SISTEMA DE CONSULTA PARA DELEGACIONES</p>
-<p align="center"><img src="LOGOFINAL.jpg" width="342" height="342" /></p>
+<p align="center"><img src="images/LOGOFINAL.jpg" width="342" height="342" /></p>
 <table width="600" border="0" align="center" style="text-align:center">  
    <tr>
     <td colspan="2" class="Estilo3">Bienvenido <b><?php echo $row['nombre'] ?></b></td>
