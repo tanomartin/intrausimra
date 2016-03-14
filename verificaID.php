@@ -6,6 +6,10 @@ $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
 if ($cant > 0) {
 	$_SESSION['delcod'] = $_POST['usuario'];
+	$hoy = date("Ymd");
+	$hora = date("H:i:s");
+	$sql = "UPDATE usuarios SET fecuac= '$hoy', horuac = '$hora' where delcod = $delcod";
+	$result = mysql_query($sql,$db);
 }
 echo $cant;
 ?>
