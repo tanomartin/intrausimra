@@ -8,7 +8,7 @@ if(empty($_SESSION) || $_SESSION['delcod'] == null || $_SESSION['delcod'] == '')
 	header("Location: logout.php");
 	exit(0);
 } else {
-	$sql = "select * from usuarios where delcod = '$delcod'";
+	$sql = "select acceso from usuarios where delcod = '$delcod'";
 	$result = mysql_query($sql,$db);
 	$row = mysql_fetch_assoc($result);
 	if ($row['acceso'] == 0) {

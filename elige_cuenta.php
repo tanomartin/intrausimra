@@ -1,15 +1,9 @@
-<?php include ("verificaSesion.php");
-if (isset($_POST['orden'])) {
-	$orden = $_POST['orden'];
-} else {
-	$orden = "nrcuit";
-}
-?>
+<?php include ("verificaSesion.php");?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -55,7 +49,7 @@ if (isset($_POST['orden'])) {
 					<a class="navbar-brand" href="menu.php">U.S.I.M.R.A.</a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
-					<a class="navbar-brand"><?php echo $row['nombre'] ?> <font size="2px" >(U.A.: <?php echo substr($row['fecuac'],8,2)."/".substr($row['fecuac'],5,2)."/".substr($row['fecuac'],0,4)." - ".$row['horuac'] ?>)</font> </a>
+					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
 					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
@@ -79,7 +73,7 @@ if (isset($_POST['orden'])) {
 					  </thead>
 					  <tbody>
 						<?php
-							$sql = "select * from empresa where delcod = $delcod order by $orden";
+							$sql = "select * from empresa where delcod = $delcod order by nrcuit";
 							$result = mysql_query($sql,$db);
 							while ($row=mysql_fetch_array($result)) { ?>
 								<tr>
@@ -93,7 +87,7 @@ if (isset($_POST['orden'])) {
 				</div>
 			</div>
 			<div class="col-md-12 panel-footer">
-				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . substr($row['fechaactualizacion'],8,2)."/".substr($row['fechaactualizacion'],5,2)."/".substr($row['fechaactualizacion'],0,4)) ; ?>
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " .$_SESSION['fecult']) ; ?>
 				<p>&copy; 2016 U.S.I.M.R.A.<p>
 			</div>
 		</div>

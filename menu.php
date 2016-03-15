@@ -5,7 +5,7 @@ include ("verificaSesion.php");
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -23,7 +23,7 @@ include ("verificaSesion.php");
 					<a class="navbar-brand" href="menu.php">U.S.I.M.R.A.</a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
-					<a class="navbar-brand"><?php echo $row['nombre'] ?> <font size="2px" >(U.A.: <?php echo substr($row['fecuac'],8,2)."/".substr($row['fecuac'],5,2)."/".substr($row['fecuac'],0,4)." - ".$row['horuac'] ?>)</font> </a>
+					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
 					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
@@ -57,7 +57,7 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-user"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="formularios/ordinter.pdf" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="empresas.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -83,13 +83,13 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-envelope"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="formularios/reccron.pdf" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="consulta.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-12 panel-footer">
-				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . substr($row['fechaactualizacion'],8,2)."/".substr($row['fechaactualizacion'],5,2)."/".substr($row['fechaactualizacion'],0,4)) ; ?>
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
 				<p>&copy; 2016 U.S.I.M.R.A.<p>
 			</div>
 		</div>

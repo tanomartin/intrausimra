@@ -11,29 +11,15 @@ $row=mysql_fetch_array($result);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Info. Empresa</title>
-<style type="text/css">
-<!--
-.Estilo3 {	font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-	font-size: 24px;
-}
--->
-</style>
 </head>
 
 <body>
 <table width="546" border="0">
    <tr>
-     <th width="56" scope="row"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="44" height="44" /></span></th>
      <td width="474"><div align="right"><font size="3" face="Papyrus"><?php print ($row['nombre']); ?></font></div></td>
   </tr>
 </table>
 <table width="548" border="1">
-  <tr>
-    <th width="167" scope="row"><div align="left">C&oacute;digo Empresa </div></th>
-    <td width="365"><?php print ($row['empcod']);?></td>
-  </tr>
   <tr>
     <th scope="row"><div align="left">Domicilio</div></th>
     <td><?php print ($row['domile']);?></td>
@@ -66,15 +52,6 @@ $row=mysql_fetch_array($result);
     <th colspan="2" scope="row"><div align="right">U.S.I.M.R.A</div></th>
   </tr>
 </table>
-<table width="549" border="0">
-  <tr>
-    <th scope="row">
-      
-      <div align="right">
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-      </div>
-      <div align="right"></div></th>
-  </tr>
-</table>
+<input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
 </body>
 </html>

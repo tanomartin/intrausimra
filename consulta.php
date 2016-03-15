@@ -3,69 +3,76 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<title>Mándanos tus comentarios</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><style type="text/css">
-<!--
-body {
-	background-color: #E2DDB8;
-}
-.Estilo3 {	font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-}
--->
-</style></head>
-<body>
-<form action="enviar.php" method="post"> 
+	<title>Mandanos tus comentarios</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'>
+	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
+	<link rel="stylesheet" href="css/style.css">
+	
+	<script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="include/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="include/js/jquery.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
+</head>
 
-  <p align="center" class="Estilo3">FORMULARIO DE CONSULTA </p>
-  <p align="center"><img src="LOGOFINAL.jpg" width="129" height="129"></p>
-  <p align="center">
-    <?php 
-  				if (isset($_GET['err'])) {
-	  				$err = $_GET['err'];
-					if ($err == 1) {
-	  		  			print("<div align='center' style='color:#FF0000'><b> ERROR AL ENVIAR EL MENSAJE INTENTELO NUEVAMENTE </b></div>");
-					}
-	  			} ?>
-  </p>
-  <div align="center">
-    <table width="1024" border="1">
-      <tr>
-        <th width="414" scope="row"><div align="right">Nombre y Apellido: </div></th>
-        <td width="594"><input type="text" name="nombre" id="nombre" size=70></td>
-      </tr>
-      <tr>
-        <th scope="row"><div align="right">Email:</div></th>
-        <td><input type="text" name="email" id="email" size=70></td>
-      </tr>
-      <tr>
-        <th scope="row"><div align="right">Telefono:</div></th>
-        <td><input type="text" name="telefono" id="telefono" size=70></td>
-      </tr>
-      <tr>
-        <th scope="row"><div align="right">Consulta:</div></th>
-        <td rowspan="2"><textarea name="coment" id="coment" cols=67 rows=10></textarea></td>
-      </tr>
-      <tr>
-        <th scope="row">&nbsp;</th>
-      </tr>
-    </table>
-    <table width="1025" border="1">
-      <tr>
-        
-        <th scope="row">
-          
-          <div align="center">
-            <input name="submit2" type="submit" value="Enviar">
-          </div></th>
-      </tr>
-    </table>
-    <br>
-  </div>
-  <div align="center">
-    <input type="button" name="back" value="VOLVER" onClick="location.href='menu.php'"/>
-  </div>
-</form>
+<body>
+	<div class="container">
+		<div class="row" align="center" style="background-color: #f5f5f5;">
+			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+				<div class="navbar-header" style="margin-left: 10px">
+					<a class="navbar-brand" href="menu.php">U.S.I.M.R.A.</a>
+				</div>
+				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
+					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
+					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
+				</div>
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="elige_cuenta.php">Cuentas</a></li>
+					<li><a href="empresas.php">Empresas y Empleados</a></li>
+					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
+					<li><a href="consulta.php">Consultas</a></li>
+				</ul>
+			</nav>
+			
+			<h2 class="page-header">Formulario de Consulta</h2>
+			<div class="col-md-6 col-md-offset-3" align="left" >
+				<form action="enviar.php" method="post"> 	
+					 <p> <?php if (isset($_GET['err'])) {
+						  		$err = $_GET['err'];
+								if ($err == 1) { ?>
+						  		  	<div style='color:#FF0000'><b> ERROR AL ENVIAR EL MENSAJE INTENTELO NUEVAMENTE </b></div>
+						<?php	}
+						  	  } ?> </p>
+				  	 <div class="form-group">
+				        <label for="nombre_1">Nombre y Apellido: </label>
+				        <input type="text" required name="nombre" id="nombre" placeholder="Introduce tu Nombre">
+				     </div>
+				     <div class="form-group">
+				        <label for="email_1">Email: </label>
+				        <input type="email" required name="email" id="email" placeholder="Introduce tu Email">
+				     </div>
+				      <div class="form-group">
+				        <label for="telefono_1">Telefono: </label>
+				        <input type="number" required name="telefono" id="telefono" placeholder="Introduce tu Telefono">
+				     </div>
+				     <div class="form-group">
+				        <label for="consulta_1">Consulta: </label>
+				       <textarea name="coment" required id="coment" cols="60" rows="5" ></textarea>
+				     </div>
+				     <div align="center">
+				    	<button type="submit" class="btn btn-default">Enviar</button>
+				    </div>
+				</form>
+			</div>
+			<div class="col-md-12 panel-footer">
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
+				<p>&copy; 2016 U.S.I.M.R.A.<p>
+			</div>
+		</div>
+	</div>
 </body>
 </html> 

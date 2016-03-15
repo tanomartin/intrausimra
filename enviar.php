@@ -12,7 +12,6 @@ $cuerpo .= "Telefono: ".$atelefono."\n";
 $cuerpo .= "Comentarios: ".$coment."\n";
 	
 $header ='From: '.$email."\r\n".'Reply-To:'.$email."\r\n".'X-Mailer: PHP/'.phpversion();
-//mando el correo...
 $mymail='intranet@usimra.com.ar';
 $subject="Formulario recibido";
 mail($mymail, $subject, utf8_decode($cuerpo), $header);
