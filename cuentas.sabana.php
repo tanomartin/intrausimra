@@ -86,8 +86,8 @@ function estado($ano, $me, $db) {
 					<a style="margin: 11px 10px 0 0" class="btn btn-info" href="logout.php"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="cuentas.php">Cuentas</a></li>
-					<li><a href="empresas.php">Empresas y Empleados</a></li>
+			<!--	<li><a href="cuentas.php">Cuentas</a></li> -->
+					<li><a href="empresas.php">Empresas</a></li>
 					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
@@ -96,7 +96,7 @@ function estado($ano, $me, $db) {
 			<h2 class="page-header">Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a class="nover" href="cuentas.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
+					<a class="nover" href="empresas.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">

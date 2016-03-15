@@ -27,28 +27,28 @@ include ("verificaSesion.php");
 					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="cuentas.php">Cuentas</a></li>
-					<li><a href="empresas.php">Empresas y Empleados</a></li>
+			<!--	<li><a href="cuentas.php">Cuentas</a></li> -->
+					<li><a href="empresas.php">Empresas</a></li>
 					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
 			
 			<div class="row">
-				<div class="col-md-4 col-md-offset-1">
+				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h3 class="panel-title">Estados de Cuenta</h3>
+							<h3 class="panel-title">Empresas</h3>
 						</div>
 						<div class="panel-body">
-							<i style="font-size: 100px"  class="glyphicon glyphicon-list-alt"></i>
+							<i style="font-size: 100px"  class="glyphicon glyphicon-home"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="cuentas.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="empresas.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-4 col-md-offset-2">
+			<!-- 	<div class="col-md-4 col-md-offset-2">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Empresas y Empleados</h3>
@@ -60,7 +60,7 @@ include ("verificaSesion.php");
 							<li class="list-group-item"><a href="empresas.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-md-4 col-md-offset-1">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">

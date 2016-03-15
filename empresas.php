@@ -26,7 +26,7 @@
 			theme: 'blue', 
 			widthFixed: true, 
 			widgets: ["zebra", "filter"], 
-			headers:{2:{sorter:false, filter:false},3:{sorter:false, filter:false}},
+			headers:{2:{sorter:false, filter:false},3:{sorter:false, filter:false},4:{sorter:false, filter:false}},
 			widgetOptions : { 
 				filter_cssFilter   : '',
 				filter_childRows   : false,
@@ -58,14 +58,14 @@
 					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="cuentas.php">Cuentas</a></li>
-					<li><a href="empresas.php">Empresas y Empleados</a></li>
+				<!--<li><a href="cuentas.php">Cuentas</a></li> -->
+					<li><a href="empresas.php">Empresas</a></li>
 					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
 			
-			<h2 class="page-header">Empresas y Empleados</h2>
+			<h2 class="page-header">Empresas</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<table class="tablesorter" id="empresas">
 				  	<thead>
@@ -74,6 +74,7 @@
 					    <th>Raz&oacute;n Social </th>
 					    <th>Ficha</th>
 						<th>Nomina</th>
+						<th>Cuenta</th>
 					  </tr>
 				  	</thead>
 				  	<tbody>
@@ -86,6 +87,7 @@
 							<td><?php echo $row['nombre'] ?></td>
 							<td align="center"><a href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>','<?php echo $row['empcod'] ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 							<td align="center"><a href="empresas.nomina.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-user"></i></a></td>
+							<td align="center"><a href="cuentas.sabana.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
 						</tr>
 					<?php } ?>
 					</tbody>
