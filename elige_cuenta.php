@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'>
 	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
@@ -13,36 +13,35 @@
 	
 	<script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
 	<script type="text/javascript" src="include/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
 	
 	<script>
-	$(function() {
-		$("#empresas")
-		.tablesorter({
-			theme: 'blue', 
-			widthFixed: true, 
-			widgets: ["zebra", "filter"], 
-			headers:{2:{sorter:false, filter:false}},
-			widgetOptions : { 
-				filter_cssFilter   : '',
-				filter_childRows   : false,
-				filter_hideFilters : false,
-				filter_ignoreCase  : true,
-				filter_searchDelay : 300,
-				filter_startsWith  : false,
-				filter_hideFilters : false,
-			}
+		$(function() {
+			$("#empresas")
+			.tablesorter({
+				theme: 'blue', 
+				widthFixed: true, 
+				widgets: ["zebra", "filter"], 
+				headers:{2:{sorter:false, filter:false}},
+				widgetOptions : { 
+					filter_cssFilter   : '',
+					filter_childRows   : false,
+					filter_hideFilters : false,
+					filter_ignoreCase  : true,
+					filter_searchDelay : 300,
+					filter_startsWith  : false,
+					filter_hideFilters : false,
+				}
+			});
 		});
-	});
+		
 	</script>
-	
 </head>
 
 
 <body>
-	<div class="container">
+	<div class="container">		
 		<div class="row" align="center" style="background-color: #f5f5f5;">
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
 				<div class="navbar-header" style="margin-left: 10px">
@@ -79,7 +78,7 @@
 								<tr>
 									<td><?php echo $row['nrcuit'] ?></td>
 									<td><?php echo $row['nombre'] ?></td>
-									<td><a href="estado_cuenta.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
+									<td align="center"><a href="estado_cuenta.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
 								</tr>
 				  	<?php } ?>
 						</tbody>

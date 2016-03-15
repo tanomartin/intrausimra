@@ -68,6 +68,10 @@ function estado($ano, $me, $db) {
 	    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
 	}
 	</script>
+	
+	<style type="text/css" media="print">
+		.nover {display:none}
+	</style>
 </head>
 
 <body>
@@ -78,8 +82,8 @@ function estado($ano, $me, $db) {
 					<a class="navbar-brand" href="menu.php">U.S.I.M.R.A.</a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
-					<a class="navbar-brand"><?php echo $row['nombre'] ?> <font size="2px" >(U.A.: <?php echo substr($row['fecuac'],8,2)."/".substr($row['fecuac'],5,2)."/".substr($row['fecuac'],0,4)." - ".$row['horuac'] ?>)</font> </a>
-					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
+					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
+					<a style="margin: 11px 10px 0 0" class="btn btn-info" href="logout.php"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="elige_cuenta.php">Cuentas</a></li>
@@ -92,7 +96,7 @@ function estado($ano, $me, $db) {
 			<h2 class="page-header">Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a href="elige_cuenta.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
+					<a class="nover" href="elige_cuenta.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">
@@ -172,10 +176,10 @@ function estado($ano, $me, $db) {
 				    <td><div align="right"><b>*PAGO</b> = PERIODO PAGO CON DDJJ</div></td>
 				  </tr>
 				</table>
-				<a href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px"  class="glyphicon glyphicon-print"></i></a>
+				<a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px"  class="glyphicon glyphicon-print"></i></a>
 			</div>
 			<div class="col-md-12 panel-footer">
-				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . substr($row['fechaactualizacion'],8,2)."/".substr($row['fechaactualizacion'],5,2)."/".substr($row['fechaactualizacion'],0,4)) ; ?>
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
 				<p>&copy; 2016 U.S.I.M.R.A.<p>
 			</div>
 		</div>

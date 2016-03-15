@@ -33,7 +33,6 @@ $row = mysql_fetch_array($result);
 <body>
 <table width="1023" border="0">
   <tr>
-    <td width="57" scope="row"><div align="center" class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></div></td>
     <td width="436"><div align="left">
       <p class="Estilo3">Detalle de DDJJ </p>
     </div></td>

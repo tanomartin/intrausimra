@@ -32,7 +32,6 @@ $row = mysql_fetch_array($result);
 <body>
 <table width="800" border="0">
   <tr>
-    <td width="57" scope="row"><div align="center"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="45" height="45" /></span></div></td>
     <td width="436"><div align="left">
       <p class="Estilo3">Detalle de Pago Diferenciado </p>
     </div></td>

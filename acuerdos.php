@@ -19,9 +19,6 @@ $row = mysql_fetch_array($result);
 	color: #999999;
 	font-size: 24px;
 }
-.Estilo4 {font-size: 10px;
-	font-weight: bold;
-}
 -->
 </style>
 </head>
@@ -29,7 +26,6 @@ $row = mysql_fetch_array($result);
 
 <table width="546" border="0">
   <tr>
-    <th width="56" scope="row"><span class="Estilo3"><img src="LOGOFINALBLANCO.jpg" width="44" height="44" /></span></th>
     <td width="474"><div align="right"><font size="3" face="Papyrus"><?php print ($row['nombre']);?></font></div></td>
   </tr>
 </table>
@@ -103,14 +99,7 @@ $row3 = mysql_fetch_array($result3);
 		</tr>
 <?php } ?>
 </table>
-<table width="1024" border="0">
-  <tr>
-    <th scope="row">
-    	<div align="right">
-    		<input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
-    	</div>
-    </th>
-  </tr>
-</table>
+<input type="button" name="imprimir" value="Imprimir" onclick="window.print();" />
+
 </body>
 </html>
