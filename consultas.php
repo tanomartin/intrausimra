@@ -38,7 +38,7 @@
 				</ul>
 			</nav>
 			
-			<h2 class="page-header">Formulario de Consulta</h2>
+			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i></br>Consultas</h2>
 			<div class="col-md-6 col-md-offset-3" align="left" >
 				<form action="consultas.enviar.php" method="post"> 	
 					 <p> <?php if (isset($_GET['err'])) {

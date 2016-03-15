@@ -35,7 +35,7 @@ include ("verificaSesion.php");
 			</nav>
 			
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-8 col-md-offset-2">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h3 class="panel-title">Empresas</h3>
