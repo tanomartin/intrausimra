@@ -31,11 +31,6 @@ $cantEmp = mysql_num_rows($result);
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
 
 	<script>
-	
-	function mypopup(dire, emple) {
-		titulo = "Info Empleado " + emple;
-	    mywindow = window.open(dire, titulo, "location=1, width=1080, height=600, top=30, left=40, resizable=1");
-	}
 
 	$(function() {
 		$("#empleados")
@@ -98,7 +93,7 @@ $cantEmp = mysql_num_rows($result);
 								<tr>
 								<td><b><?php echo $row['nrcuil'] ?></b></td>
 								<td><?php echo $row['apelli'].", ".$row['nombre']  ?></td>
-								<td align="center"><a href="javascript:mypopup('empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrcuit ?>','<?php echo $row['nrcuil'] ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+								<td align="center"><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrcuit ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 								</tr>
 					  <?php }
 					 	  } else { ?>

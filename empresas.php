@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
-
+	<script type="text/javascript" src="include/js/jquery.blockUI.js" ></script>
 	<script>
 
 	$(function() {
@@ -38,11 +38,13 @@
 			}
 		});
 	});
-	
-	function mypopup(dire, empre) {
-		titulo = "Info Empresa " + empre;
-	    mywindow = window.open(dire, titulo, "location=1, width=600, height=350, top=30, left=40, resizable=0");
+
+	function rediSabanaCtaCte(cuit) {
+		$.blockUI({ message: "<h3>Generando Estado de Cuenta<br>Esto puede tardar unos Segundos<br> Aguarde por favor</h3>" });
+		var dire = 'cuentas.sabana.php?nrcuit='+cuit;
+		location.href = dire;
 	}
+
 	</script>
 
 </head>
@@ -85,9 +87,9 @@
 						<tr>
 							<td><?php echo $row['nrcuit'] ?></td>
 							<td><?php echo $row['nombre'] ?></td>
-							<td align="center"><a href="javascript:mypopup('empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>','<?php echo $row['empcod'] ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+							<td align="center"><a target="_blanck" href="empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 							<td align="center"><a href="empresas.nomina.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-user"></i></a></td>
-							<td align="center"><a href="cuentas.sabana.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
+							<td align="center"><a href="javascript:rediSabanaCtaCte('<?php echo $row['nrcuit'] ?>')"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
 						</tr>
 					<?php } ?>
 					</tbody>
