@@ -27,10 +27,10 @@ include ("verificaSesion.php");
 					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="elige_cuenta.php">Cuentas</a></li>
+					<li><a href="cuentas.php">Cuentas</a></li>
 					<li><a href="empresas.php">Empresas y Empleados</a></li>
 					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
-					<li><a href="consulta.php">Consultas</a></li>
+					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
 			
@@ -44,7 +44,7 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-list-alt"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="elige_cuenta.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="cuentas.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>
@@ -83,7 +83,7 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-envelope"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="consulta.php" class="btn btn-primary">Ingresar</a></li>
+							<li class="list-group-item"><a href="consultas.php" class="btn btn-primary">Ingresar</a></li>
 						</ul>
 					</div>
 				</div>

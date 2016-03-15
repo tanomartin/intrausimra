@@ -15,5 +15,5 @@ $header ='From: '.$email."\r\n".'Reply-To:'.$email."\r\n".'X-Mailer: PHP/'.phpve
 $mymail='intranet@usimra.com.ar';
 $subject="Formulario recibido";
 mail($mymail, $subject, utf8_decode($cuerpo), $header);
-header ("Location: envio_consulta.php");
+header ("Location: consultas.enviada.php");
 ?>

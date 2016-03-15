@@ -86,17 +86,17 @@ function estado($ano, $me, $db) {
 					<a style="margin: 11px 10px 0 0" class="btn btn-info" href="logout.php"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="elige_cuenta.php">Cuentas</a></li>
+					<li><a href="cuentas.php">Cuentas</a></li>
 					<li><a href="empresas.php">Empresas y Empleados</a></li>
 					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
-					<li><a href="consulta.php">Consultas</a></li>
+					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
 			
 			<h2 class="page-header">Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<a class="nover" href="elige_cuenta.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
+					<a class="nover" href="cuentas.php"><i title="Imprimir" style="font-size: 40px; float: left;"  class="glyphicon glyphicon-arrow-left"></i></a>
 					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">
@@ -145,13 +145,13 @@ function estado($ano, $me, $db) {
 						<?php		} else {
 										$descri = estado($ano,$mes,$db);
 										if ($descri == "PAGO") { ?>
-											<td><a href="javascript:mypopup('pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('cuentas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if ($descri == "ACUER.") { ?>
-											<td><a href="javascript:mypopup('acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('cuentas.sabana.acuerdos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if ($descri == "P.DIF.") { ?>
-											<td><a href="javascript:mypopup('pagosAnte.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+											<td><a href="javascript:mypopup('cuentas.sabana.diferidos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
 										if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
 											<td><?php echo $descri ?></td>

@@ -31,16 +31,16 @@
 					<a style="margin: 11px 10px 0 0"  href="logout.php" class="btn btn-info"><span title="Salir" class="glyphicon glyphicon-log-out"></span></a>
 				</div>
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="elige_cuenta.php">Cuentas</a></li>
+					<li><a href="cuentas.php">Cuentas</a></li>
 					<li><a href="empresas.php">Empresas y Empleados</a></li>
 					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
-					<li><a href="consulta.php">Consultas</a></li>
+					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
 			
 			<h2 class="page-header">Formulario de Consulta</h2>
 			<div class="col-md-6 col-md-offset-3" align="left" >
-				<form action="enviar.php" method="post"> 	
+				<form action="consultas.enviar.php" method="post"> 	
 					 <p> <?php if (isset($_GET['err'])) {
 						  		$err = $_GET['err'];
 								if ($err == 1) { ?>

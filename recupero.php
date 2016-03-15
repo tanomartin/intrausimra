@@ -23,6 +23,7 @@
 		<div class="row" align="center">
 			<form class="form-signin mg-btm" id="form_recupero">
 				<h3 class="heading-desc">Recupero Contrase&ntilde;a</h3>
+				<img class="img-responsive" src="images/recupero.png" />
 				<h4><span id="cartelRecuerpo" class="clearfix"></span></h4>
 				<div class="main">
 					<div class="input-group">
@@ -63,7 +64,7 @@
 		$('#cartelRecuerpo').html("");
 		var usuario = $('#usuario').val();
 		var email = $('#email').val();
-		$.post("verificadorMail.php", {usuario : usuario, email: email}, function(data) {
+		$.post("verificaMail.php", {usuario : usuario, email: email}, function(data) {
 			if (data == 1) {
 				$('#cartelRecuerpo').html("El Recupero se realizo con exito!<br>En instantes recibir&aacute; en el e-mail registrado su contrase&ntilde;a.");
 				$('#cartelRecuerpo').addClass('okRecupero');

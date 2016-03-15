@@ -38,7 +38,7 @@
 					</div>
 					<div class="row">
 						<div class="col-xs-8 col-md-8" style="text-align: left;">
-							<label><a href="olvido.php">&iquest;Olvido su contrase&ntilde;a?</a></label>
+							<label><a href="recupero.php">&iquest;Olvido su contrase&ntilde;a?</a></label>
 						</div>
 						<div class="col-xs-4 col-md-4 pull-right">
 							<button type="submit" id="submit" name="submit" class="btn btn-large btn-success pull-right">Login</button>
