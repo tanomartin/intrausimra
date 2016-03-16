@@ -6,7 +6,7 @@
 	<title>Empresas</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'/>
 	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
@@ -53,7 +53,7 @@
 		<div class="row" align="center" style="background-color: #f5f5f5;">
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
 				<div class="navbar-header" style="margin-left: 10px">
-					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png"></a>
+					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png" /></a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
 					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
@@ -67,7 +67,8 @@
 				</ul>
 			</nav>
 			
-			<h3 class="page-header"><i style="font-size: 50px" class="glyphicon glyphicon-home"></i></br>Empresas</h3>
+			<h2><i style="font-size: 50px" class="glyphicon glyphicon-home"></i></h2>
+			<h2 class="page-header">Empresas</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<table class="tablesorter" id="empresas">
 				  	<thead>
@@ -97,7 +98,7 @@
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
-				<p>&copy; 2016 U.S.I.M.R.A.<p>
+				<p>&copy; 2016 U.S.I.M.R.A.</p>
 			</div>
 		</div>
 	</div>

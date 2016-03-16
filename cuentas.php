@@ -87,7 +87,7 @@
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " .$_SESSION['fecult']) ; ?>
-				<p>&copy; 2016 U.S.I.M.R.A.<p>
+				<p>&copy; 2016 U.S.I.M.R.A.</p>
 			</div>
 		</div>
 	</div>

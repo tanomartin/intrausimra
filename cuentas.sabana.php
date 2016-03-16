@@ -53,7 +53,7 @@ function estado($ano, $me, $db) {
 	<title>Estado de Cuenta</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'/>
 	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
@@ -181,7 +181,7 @@ function estado($ano, $me, $db) {
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
-				<p>&copy; 2016 U.S.I.M.R.A.<p>
+				<p>&copy; 2016 U.S.I.M.R.A.</p>
 			</div>
 		</div>
 	</div>

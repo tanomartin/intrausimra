@@ -1,16 +1,16 @@
 <?php include ("verificaSesion.php"); ?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 	<title>Mandanos tus comentarios</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css' />
 	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css" />
 	
 	<script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
 	<script type="text/javascript" src="include/js/bootstrap.min.js"></script>
@@ -24,7 +24,7 @@
 		<div class="row" align="center" style="background-color: #f5f5f5;">
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
 				<div class="navbar-header" style="margin-left: 10px">
-					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png"></a>
+					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png" /></a>
 				</div>
 				<div class="nav navbar-top-links navbar-right" style="margin-right: 3px">
 					<a class="navbar-brand"><?php echo $_SESSION['nombre'] ?> <font size="2px" >(U.A.: <?php echo $_SESSION['fecacc'] ?>)</font> </a>
@@ -38,26 +38,28 @@
 				</ul>
 			</nav>
 			
-			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i></br>Consultas</h2>
+			<h2><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i></h2>
+			<h2 class="page-header">Consultas</h2>
 			<div class="col-md-6 col-md-offset-3" align="left" >
 				<form action="consultas.enviar.php" method="post"> 	
-					 <p> <?php if (isset($_GET['err'])) {
+					 <div> <?php if (isset($_GET['err'])) {
 						  		$err = $_GET['err'];
 								if ($err == 1) { ?>
 						  		  	<div style='color:#FF0000'><b> ERROR AL ENVIAR EL MENSAJE INTENTELO NUEVAMENTE </b></div>
 						<?php	}
-						  	  } ?> </p>
+						  	  } ?> 
+					 </div>
 				  	 <div class="form-group">
 				        <label for="nombre_1">Nombre y Apellido: </label>
-				        <input type="text" required name="nombre" id="nombre" placeholder="Introduce tu Nombre">
+				        <input type="text"  name="nombre" id="nombre" placeholder="Introduce tu Nombre" required />
 				     </div>
 				     <div class="form-group">
 				        <label for="email_1">Email: </label>
-				        <input type="email" required name="email" id="email" placeholder="Introduce tu Email">
+				        <input type="email" required name="email" id="email" placeholder="Introduce tu Email" />
 				     </div>
 				      <div class="form-group">
 				        <label for="telefono_1">Telefono: </label>
-				        <input type="number" required name="telefono" id="telefono" placeholder="Introduce tu Telefono">
+				        <input type="number" required name="telefono" id="telefono" placeholder="Introduce tu Telefono" />
 				     </div>
 				     <div class="form-group">
 				        <label for="consulta_1">Consulta: </label>
@@ -70,7 +72,7 @@
 			</div>
 			<div class="col-md-12 panel-footer">
 				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
-				<p>&copy; 2016 U.S.I.M.R.A.<p>
+				<p>&copy; 2016 U.S.I.M.R.A.</p>
 			</div>
 		</div>
 	</div>
