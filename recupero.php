@@ -6,9 +6,7 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,maximum-scale=1" />
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	crossorigin="anonymous">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link href='https://fonts.googleapis.com/css?family=Roboto:500,700'
@@ -17,6 +15,7 @@
 <script type="text/javascript" src="include/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 	<div class="container">
@@ -34,7 +33,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> <input
-							type="text" class="form-control" required="required" id="email"
+							type="email" class="form-control" required="required" id="email"
 							placeholder="E-mail">
 					</div>
 					<div class="row">
@@ -51,14 +50,12 @@
 		</div>
 	</div>
 </body>
-</html>
+
 
 <script  type="text/javascript">
 	$("#volver").click(function() {
 		window.location.href = "index.php";
 	});
-
-
 	$("#form_recupero").submit(function( event ) {
 		$("#submit").prop('disabled', true);
 		$('#cartelRecuerpo').html("");
@@ -78,3 +75,6 @@
 	});
 	
 </script>
+
+</html>
+
