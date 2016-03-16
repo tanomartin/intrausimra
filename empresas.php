@@ -67,8 +67,7 @@
 				</ul>
 			</nav>
 			
-			<h2><i style="font-size: 50px" class="glyphicon glyphicon-home"></i></h2>
-			<h2 class="page-header">Empresas</h2>
+			<h2><i style="font-size: 50px" class="glyphicon glyphicon-home"></i><br>Empresas</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<table class="tablesorter" id="empresas">
 				  	<thead>

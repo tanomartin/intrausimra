@@ -6,7 +6,7 @@ $rowEmpre = mysql_fetch_assoc($result);
 $delcod = $rowEmpre['delcod'];
 
 function estado($ano, $me, $db) {	
-	global $empcod, $delcod, $nrcuit;
+	global $delcod, $nrcuit;
 	$sql1 = "select * from pagos where nrcuit = $nrcuit and anotra = $ano and mestra = $me";
 	$result1 = mysql_query($sql1,$db); 
 	$row1 = mysql_fetch_array($result1);
