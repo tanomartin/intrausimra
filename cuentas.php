@@ -1,6 +1,6 @@
 <?php include ("verificaSesion.php");?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -43,7 +43,7 @@
 <body>
 	<div class="container">		
 		<div class="row" align="center" style="background-color: #f5f5f5;">
-			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<nav class="navbar navbar-default navbar-static-top">
 				<div class="navbar-header" style="margin-left: 10px">
 					<a class="navbar-brand" href="menu.php"> <img style="max-width:38px; margin-top: -9px;" src="images/logo.png"/></a>
 				</div>
