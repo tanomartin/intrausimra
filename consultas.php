@@ -39,7 +39,7 @@
 			</nav>
 			
 			<h2><i style="font-size: 50px"  class="glyphicon glyphicon-envelope"></i><br>Consultas</h2>
-			<div class="col-md-6 col-md-offset-3" align="left" >
+			<div class="col-md-6 col-md-offset-3" align="left" style="margin-bottom: 15px">
 				<form action="consultas.enviar.php" method="post"> 	
 					 <div> <?php if (isset($_GET['err'])) {
 						  		$err = $_GET['err'];

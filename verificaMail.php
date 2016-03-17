@@ -1,8 +1,7 @@
 <?php
-$mail = $_POST ['email'];
-$nrpresta = $_POST ['usuario'];
-
 include ("conexion.php");
+$mail = $_POST ['email'];
+$delcod = $_POST ['usuario'];
 $sql = "select * from usuarios where delcod = '$delcod' and emails = '$mail'";
 $result = mysql_query($sql,$db);
 $cant = mysql_num_rows($result);
