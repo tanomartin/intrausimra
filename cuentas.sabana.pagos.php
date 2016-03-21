@@ -75,7 +75,7 @@ while ($row1=mysql_fetch_array($result1)) {
 		<td><?php echo $row1['totdep'] ?></td>
 		<td><?php echo $sispago ?></td>
 <?php	if ($row1['codbar'] != null) { ?>
-			<td><a href="javascript:mypopup('ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>')"><?php echo $row1['codbar'] ?></a></td>
+			<td><a href="javascript:mypopup('cuentas.sabana.pagos.ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>')"><?php echo $row1['codbar'] ?></a></td>
 <?php	} 
 		else { ?>
 			<td>-</td>
