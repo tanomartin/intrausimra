@@ -54,7 +54,7 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="cuentas.php">Cuentas</a></li>
 					<li><a href="empresas.php">Empresas y Empleados</a></li>
-					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
+					<li><a href="files/tutorialIntra.pdf" target="_blank">Instructivo</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>

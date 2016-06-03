@@ -32,7 +32,7 @@ include ("verificaSesion.php");
 				<ul class="nav navbar-nav navbar-left">
 			<!--	<li><a href="cuentas.php">Cuentas</a></li> -->
 					<li><a href="empresas.php">Empresas</a></li>
-					<li><a href="files/tutorialIntra.pdf" target="_blanck">Instructivo</a></li>
+					<li><a href="files/tutorialIntra.pdf" target="_blank">Instructivo</a></li>
 					<li><a href="consultas.php">Consultas</a></li>
 				</ul>
 			</nav>
@@ -73,7 +73,7 @@ include ("verificaSesion.php");
 							<i style="font-size: 100px"  class="glyphicon glyphicon-book"></i>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item"><a href="files/tutorialIntra.pdf" class="btn btn-primary" target="_blanck">Descargar</a></li>
+							<li class="list-group-item"><a href="files/tutorialIntra.pdf" class="btn btn-primary" target="_blank">Descargar</a></li>
 						</ul>
 					</div>
 				</div>
