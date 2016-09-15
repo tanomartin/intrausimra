@@ -92,7 +92,7 @@
 							<td><?php echo $row['nombre'] ?></td>
 							<td align="center"><a target="_blank" href="empresas.ficha.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 							<td align="center"><a target="_blank" href="empresas.nomina.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-user"></i></a></td>
-							<td align="center"><a target="_blank" href="cuentas.sabana.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
+							<td align="center"><a target="_blank" href="cuentas.sabana.nueva.php?nrcuit=<?php echo $row['nrcuit'] ?>"><i style="font-size: 20px"  class="glyphicon glyphicon-list-alt"></i></a></td>
 						</tr>
 					<?php } ?>
 					</tbody>
