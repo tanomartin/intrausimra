@@ -176,7 +176,10 @@ function estado($ano, $me) {
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
 	<script>
 	function mypopup(dire) {
-	    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
+		var a = document.createElement("a");
+		a.target = "_blank";
+		a.href = dire;
+		a.click();
 	}
 	</script>
 	
@@ -191,7 +194,7 @@ function estado($ano, $me) {
 			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-list-alt"></i><br>Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
+					<h3><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">
 				  <thead>

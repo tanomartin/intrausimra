@@ -7,29 +7,60 @@ $result = mysql_query($sql,$db);
 $row = mysql_fetch_array($result);
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Detalle de pago</title>
-<style type="text/css">
-<!--
-.Estilo3 {font-family: Papyrus;
-	font-weight: bold;
-	color: #999999;
-	font-size: 24px;
-}
-.Estilo4 {	font-size: 10px;
-	font-weight: bold;
-}
-.Estilo5 {	color: #666666;
-	font-weight: bold;
-}
--->
-</style>
+	<title>Detalle de Pago Difenciado</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:500,700' type='text/css'/>
+	<link rel="stylesheet" href="include/js/jquery.tablesorter/themes/theme.blue.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	
+	<script type="text/javascript" src="include/js/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="include/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="include/js/jquery.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>	
+	<style type="text/css" media="print">
+		.nover {display:none}
+	</style>
 </head>
 
 <body>
+	<div class="container">
+		<div class="row" align="center" style="background-color: #f5f5f5;">		
+			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-list-alt"></i><br>Detalle de Pago Diferenciado</h2>
+			<div class="col-md-6 col-md-offset-3">
+				<h3><?php echo ($row['nombre']);?></h3>
+				<table class="table" style="text-align: center">
+				   <tr>
+				       <th style="text-align: center">Per&iacute;odo Cancelado </th>
+				       <th style="text-align: center">Per&iacute;odo de Pago </th>
+				    </tr>
+				          <?php
+							$sql1 = "select * from peranter where nrcuit = $nrcuit and anoant = '$ano' and mesant = '$mes'";;
+							$result1 = mysql_query($sql1,$db); 
+							while ($row1=mysql_fetch_array($result1)) { ?>
+								<tr>
+									<td><?php echo $row1['mesant']."/".$row1['anoant'] ?></td>
+									<td><?php echo $row1['mestra']."/".$row1['anotra'] ?></td>
+								</tr>
+					<?php	} ?>
+				</table>
+				<a class="nover" href="javascript:window.print();"><i title="Imprimir" style="font-size: 40px; margin-bottom: 20px"  class="glyphicon glyphicon-print"></i></a>
+			</div>
+			<div class="col-md-12 panel-footer">
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
+				<p>&copy; 2016 U.S.I.M.R.A.</p>
+			</div>
+		</div>
+	</div>
+</body>
+
+<!-- <body>
 <table width="800" border="0">
   <tr>
     <td width="436"><div align="left">
@@ -73,4 +104,4 @@ $row = mysql_fetch_array($result);
   </tr>
 </table>
 </body>
-</html>
+</html> -->

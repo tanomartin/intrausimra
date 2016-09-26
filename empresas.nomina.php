@@ -61,9 +61,7 @@ $cantEmp = mysql_num_rows($result);
 		<div class="row" align="center" style="background-color: #f5f5f5;">	
 			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-user"></i><br>Empleados</h2>
 			<div class="col-md-10 col-md-offset-1">
-				<div>
-					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
-				</div>
+				<h3><?php print ($rowEmpre['nombre']);?></h3>
 				<table class="tablesorter" id="empleados">
 					<thead>
 						<tr>
@@ -109,6 +107,10 @@ $cantEmp = mysql_num_rows($result);
 					</td>
 			      </tr>
 			  </table>	
+			</div>
+			<div class="col-md-12 panel-footer">
+				<?php  print ("&Uacute;LTIMA ACTUALIZACI&Oacute;N - " . $_SESSION['fecult']); ?>
+				<p>&copy; 2016 U.S.I.M.R.A.</p>
 			</div>
 		</div>
 	</div>
