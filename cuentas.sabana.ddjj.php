@@ -1,9 +1,7 @@
 <?php include ("verificaSesion.php");
 $nrcuit = $_GET['nrcuit'];
-$control = $_GET['control'];
-$sispago = $_GET['sispago'];
-$ano = $_GET['ano'];
-$mes = $_GET['mes'];
+$permes = $_GET['mes'];
+$perano = $_GET['ano'];
 $sql = "select * from empresa where delcod = $delcod and nrcuit = $nrcuit";
 $result = mysql_query($sql,$db); 
 $row = mysql_fetch_array($result);
@@ -35,43 +33,32 @@ $row = mysql_fetch_array($result);
 <body>
 	<div class="container">
 		<div class="row" align="center" style="background-color: #f5f5f5;">		
-			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-list-alt"></i><br>Detalle de DDJJ</h2>
+			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-list-alt"></i><br>Detalle de DDJJ (NO PAGA)</h2>
+			<h3 style="color: blue">Solo a modo informativo</h3>
 			<div class="col-md-10 col-md-offset-1">
 				<h3><?php echo ($row['nombre']);?></h3>
 				<table class="table" style="text-align: center">
 				  <tr>
 				    <th style="text-align: center">CUIL</th>
 				    <th style="text-align: center">Mes</th>
-				    <th style="text-align: center">Año</th>
-				    <th style="text-align: center">Remuneración</th>
+				    <th style="text-align: center">A&ntilde;o</th>
+				    <th style="text-align: center">Remuneraci&oacute;n</th>
 				    <th style="text-align: center">Aporte 0.60 </th>
 				    <th style="text-align: center">Aporte 1.00 </th>
 				    <th style="text-align: center">Aporte 1.50 </th>
 				    <th style="text-align: center">Total </th>
 				  </tr>
 				  
-			<?php	mysql_select_db('ospimrem_newaplicativo');				  
-					if ($sispago != "L") {
-						$con = substr($control,15,14);				
+			<?php	mysql_select_db('ospimrem_newaplicativo');				  				
+			
+					$sqlDet = "SELECT * FROM ddjjcondocu 
+									WHERE nrcuit = '$nrcuit' and permes = $permes and perano = $perano and nrcuil != '99999999999'";
+					$resDet = mysql_query($sqlDet,$db); 
 						
-						$sqlDet = "select * from ppjj where nrctrl = '$con'";
-						$resDet = mysql_query($sqlDet,$db); 
-						
-						$sqlCab = "select * from validas where nrctrl = '$con'";
-						$resCab = mysql_query($sqlCab,$db);
-						$rowCab = mysql_fetch_assoc($resCab);
-				 	} else {
-				 		$sqlDet = "select * 
-				 					FROM vinculadocu v, ppjj p 
-				 					WHERE v.referencia = '$control' and v.nrctrl = p.nrctrl and v.nrcuit = p.nrcuit and p.perano = $ano and p.permes = $mes";
-				 		$resDet = mysql_query($sqlDet,$db);
-				 		
-				 		$sqlCab = "select *
-				 					FROM vinculadocu v, validas c
-				 					WHERE v.referencia = '$control' and v.nrctrl = c.nrctrl and v.nrcuit = c.nrcuit and c.perano = $ano and c.permes = $mes";
-				 		$resCab = mysql_query($sqlCab,$db);
-				 		$rowCab = mysql_fetch_assoc($resCab);
-				 	}
+					$sqlCab = "SELECT * FROM ddjjcondocu
+								WHERE nrcuit = '$nrcuit' and permes = $permes and perano = $perano and nrcuil = '99999999999'";
+					$resCab = mysql_query($sqlCab,$db);
+					$rowCab = mysql_fetch_assoc($resCab);
 					while ($rowDet = mysql_fetch_assoc($resDet)) { ?>
 							<tr>
 								<td><?php echo $rowDet['nrcuil'] ?></td>

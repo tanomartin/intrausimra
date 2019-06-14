@@ -50,26 +50,27 @@ $row = mysql_fetch_array($result);
 				    <th style="text-align: center">Fecha de Deposito </th>
 				    <th style="text-align: center">Total Depositado</th>
 				    <th style="text-align: center">Sistema de Pago</th>
-				    <th style="text-align: center">C&oacute;digo de Barra</th>
+			  		<th style="text-align: center">Referencia Pago</th>
 				  </tr>
 				  
 				<?php
 				$sql1 = "select *, date_format(fecdep, '%d/%m/%Y') as fecdep from pagos where nrcuit = $nrcuit and anotra = '$ano' and mestra = '$mes'";;
 				$result1 = mysql_query($sql1,$db); 
 				while ($row1=mysql_fetch_array($result1)) {
+					$sispago = "Manual";
 					if ($row1['sispag'] == 'E') {
 						$sispago = "Electrónico";
 					}
-					else {
-						$sispago = "Manual";
-					} ?>
+					if ($row1['sispag'] == 'L') {
+						$sispago = "Link Pagos";
+					}?>
 					<tr>
 						<td><?php echo $row1['mestra']."/".$row1['anotra'] ?></td>
 						<td><?php echo $row1['fecdep'] ?></td>
 						<td><?php echo $row1['totdep'] ?></td>
 						<td><?php echo $sispago ?></td>
 				<?php	if ($row1['codbar'] != null) { ?>
-							<td><a href="javascript:mypopup('cuentas.sabana.pagos.ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>')"><?php echo $row1['codbar'] ?></a></td>
+							<td><a href="javascript:mypopup('cuentas.sabana.pagos.ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>&sispago=<?php echo $row1['sispag'] ?>&ano=<?php echo $ano?>&mes=<?php echo $mes?>')"><?php echo $row1['codbar'] ?></a></td>
 				<?php	} 
 						else { ?>
 							<td>-</td>

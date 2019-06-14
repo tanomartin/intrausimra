@@ -5,46 +5,156 @@ $result = mysql_query($sql,$db);
 $rowEmpre = mysql_fetch_assoc($result);
 $delcod = $rowEmpre['delcod'];
 
-function estado($ano, $me, $db) {	
-	global $delcod, $nrcuit;
-	$sql1 = "select * from pagos where nrcuit = $nrcuit and anotra = $ano and mestra = $me";
-	$result1 = mysql_query($sql1,$db); 
-	$row1 = mysql_fetch_array($result1);
-	if($row1!=null) {
-		$des = "PAGO";
-	} else { 
-		$sql6 = "select * from juicios where nrcuit = $nrcuit and anojui = $ano and mesjui = $me" ;
-		 $result6 = mysql_query($sql6,$db); 
-		 $row6 = mysql_fetch_array($result6);
-		 if ($row6 != null) {
-		 	$des = "JUICI.";
-		 } else {
-			$sql2 = "select * from detacuer where nrcuit = $nrcuit and anoacu = $ano and mesacu = $me" ;
-			$result2 = mysql_query($sql2,$db); 
-			$row2 = mysql_fetch_array($result2);
-			if($row2!=null) {
-				$des = "ACUER.";
-			} else {
-				$sql3 = "select * from peranter where nrcuit = $nrcuit and anoant = $ano and mesant = $me" ;
-				$result3 = mysql_query($sql3,$db); 
-				$row3 = mysql_fetch_array($result3);
-				if($row3!=null) {
-					$des = "P.DIF.";
-				} else {
-					$sql9 = "select * from ddjjnopa where nrcuit = $nrcuit and perano = $ano and permes = $me" ;
-					$result9 = mysql_query($sql9,$db); 
-					$row9 = mysql_fetch_array($result9);
-					if($row9!=null) {
-						$des = "NO PAGO";
-					} else {
-						$des = "S.DJ.";
-					}
-				}					
-			}	
+$anoactual =  date("Y");
+$mesacutal = date("m");
+	
+$anoinicio = $anoactual-5;
+$mesinicio = $mesacutal+1;
+if($mesinicio == 13) {
+	$mesinicio = 1;
+	$anoinicio++;
+}
+$mesfin = $mesacutal;
+$ano = $anoinicio;
+$anofin = $anoactual;
+
+function encuentroPagos($db) {
+	global $nrcuit, $anoinicio, $mesinicio, $anofin, $mesfin, $delcod;
+	$sqlPagos = "select anotra, mestra from pagos where nrcuit = $nrcuit and ((anotra > $anoinicio and anotra <= $anofin) or (anotra = $anoinicio and mestra >= $mesinicio))";
+	//echo($sqlPagos."<br><br>");
+	$resPagos = mysql_query($sqlPagos,$db);
+	$CantPagos = mysql_num_rows($resPagos);
+	$arrayPagos = array();
+	if($CantPagos > 0) {
+		while ($rowPagos = mysql_fetch_assoc($resPagos)) {
+			$id=$rowPagos['anotra'].$rowPagos['mestra'];
+			$arrayPagos[$id] = array('anio' => $rowPagos['anotra'], 'mes' => $rowPagos['mestra']);
 		}
 	}
-	return $des;
+	return($arrayPagos);
 }
+
+function encuentroJuicios($db) {
+	global $nrcuit, $anoinicio, $mesinicio, $anofin, $mesfin, $delcod;
+	$sqlJuicios = "select * from juicios where nrcuit = $nrcuit and ((anojui > $anoinicio and anojui <= $anofin) or (anojui = $anoinicio and mesjui >= $mesinicio))";
+	//echo($sqlJuicios."<br><br>");
+	$resJuicios = mysql_query($sqlJuicios,$db);
+	$canJuicios = mysql_num_rows($resJuicios);
+	$arrayJuicios = array();
+	if($canJuicios > 0) {
+		while ($rowJuicios = mysql_fetch_assoc($resJuicios)) {
+			$id=$rowJuicios['anojui'].$rowJuicios['mesjui'];
+			$arrayJuicios[$id] = array('anio' => (int)$rowJuicios['anojui'], 'mes' => (int)$rowJuicios['mesjui']);
+		}
+	}
+	return($arrayJuicios);
+}
+
+function encuentroAcuerdos($db) {
+	global $nrcuit, $anoinicio, $mesinicio, $anofin, $mesfin, $delcod;
+	$sqlAcuerdos = "select * from detacuer where nrcuit = $nrcuit and ((anoacu > $anoinicio and anoacu <= $anofin) or (anoacu = $anoinicio and mesacu >= $mesinicio))" ;
+	//echo($sqlAcuerdos."<br><br>");
+	$resAcuerdos = mysql_query($sqlAcuerdos,$db);
+	$canAcuerdos = mysql_num_rows($resAcuerdos);
+	$arrayAcuerdos = array();
+	if($canAcuerdos > 0) {
+		while ($rowAcuerdos = mysql_fetch_assoc($resAcuerdos)) {
+			$id=$rowAcuerdos['anoacu'].$rowAcuerdos['mesacu'];
+			$arrayAcuerdos[$id] = array('anio' => (int)$rowAcuerdos['anoacu'], 'mes' => (int)$rowAcuerdos['mesacu']);
+		}
+	}
+	return($arrayAcuerdos);
+}
+
+function encuentroDiferenciado($db) {
+	global $nrcuit, $anoinicio, $mesinicio, $anofin, $mesfin, $delcod;
+	$sqlDiferenciado = "select * from peranter where nrcuit = $nrcuit and ((anoant > $anoinicio and anoant <= $anofin) or (anoant = $anoinicio and mesant >= $mesinicio))";
+	//echo($sqlDiferenciado."<br><br>");
+	$resDiferenciado = mysql_query($sqlDiferenciado,$db);
+	$canDiferenciado = mysql_num_rows($resDiferenciado);
+	$arrayDiferenciados = array();
+	if($canDiferenciado > 0) {
+		while ($rowDiferenciado = mysql_fetch_assoc($resDiferenciado)) {
+			$id=$rowDiferenciado['anoant'].$rowDiferenciado['mesant'];
+			$arrayDiferenciados[$id] = array('anio' => (int)$rowAcuerdos['anoant'], 'mes' => (int)$rowAcuerdos['mesant']);
+		}
+	}
+	return($arrayDiferenciados);
+}
+
+function encuentroDdjj($db) {
+	global $nrcuit, $anoinicio, $mesinicio, $anofin, $mesfin, $delcod;
+	$sqlDdjj = "select * from ddjjnopa where nrcuit = $nrcuit and ((perano > $anoinicio and perano <= $anofin) or (perano = $anoinicio and permes >= $mesinicio))";
+	//echo($sqlDdjj."<br><br>");
+	$resDdjj = mysql_query($sqlDdjj,$db);
+	$canDdjj = mysql_num_rows($resDdjj);
+	$arrayDdjj = array();
+	if($canDdjj > 0) {
+		while ($rowDdjj = mysql_fetch_assoc($resDdjj)) {
+			$id=$rowDdjj['perano'].$rowDdjj['permes'];
+			$arrayDdjj[$id] = array('anio' => (int)$rowDdjj['perano'], 'mes' => (int)$rowDdjj['permes']);
+		}
+	}
+	return($arrayDdjj);
+}
+
+$arrayPagos = encuentroPagos($db);
+//var_dump($arrayPagos);echo"<br><br>";
+$arrayJuicios = encuentroJuicios($db);
+//var_dump($arrayJuicios);echo"<br><br>";
+$arrayAcuerdos = encuentroAcuerdos($db);
+//var_dump($arrayAcuerdos);echo"<br><br>";
+$arrayDiferenciados = encuentroDiferenciado($db);
+//var_dump($arrayDiferenciados);echo"<br><br>";
+$arrayDdjj = encuentroDdjj($db);
+//var_dump($arrayDdjj);echo"<br><br>";
+
+function estado($ano, $me) {
+	global $cuit, $anoinicio, $mesinicio, $anofin, $mesfin;
+	global $arrayPagos, $arrayAcuerdos, $arrayJuicios, $arrayDiferenciados, $arrayDdjj;
+	//VEO QUE EL MES Y EL AÑO ESTEND DENTRO DE LOS PERIODOS A MOSTRAR
+	if ($ano == $anoinicio) {
+		if ($me < $mesinicio) {
+			$des = "-";
+			return($des);
+		}
+	}
+	if ($ano == $anofin) {
+		if ($me > $mesfin) {
+			$des = "-";
+			return($des);
+		}
+	}
+	$idArray = $ano.$me;
+	// VEO LOS PERIODOS ABARCADOS POR ACUERDO
+	if (array_key_exists($idArray, $arrayPagos)) {
+		$des = "PAGO";
+	} else {
+		if(array_key_exists($idArray, $arrayAcuerdos)) {
+			$des = "ACUER.";
+		} else {
+			//VEO LOS JUICIOS
+			if (array_key_exists($idArray, $arrayJuicios)) {
+				$des = "JUICI.";
+			} else {
+				//VEO LOS PAG. DIF.
+				if (array_key_exists($idArray, $arrayDiferenciados)) {
+					$des = "P.DIF.";
+				} else {
+					// VEO LAS DDJJ REALIZADAS SIN PAGOS
+					if(array_key_exists($idArray, $arrayDdjj)) {
+						$des = "NO PAGO";
+					} else {
+						// NO HAY DDJJ SIN PAGOS
+						$des = "S.DJ.";
+					} //else DDJJ
+				} //else PAG. DIF.
+			} //else JUICIOS
+		}//else ACUERDOS
+	}
+	return $des;
+} //function
+
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +176,10 @@ function estado($ano, $me, $db) {
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
 	<script>
 	function mypopup(dire) {
-	    mywindow = window.open(dire, 'InfoCuenta', 'location=1, width=1080, height=600, top=30, left=40, resizable=1, scrollbars=1');
+		var a = document.createElement("a");
+		a.target = "_blank";
+		a.href = dire;
+		a.click();
 	}
 	</script>
 	
@@ -81,7 +194,7 @@ function estado($ano, $me, $db) {
 			<h2 class="page-header"><i style="font-size: 50px"  class="glyphicon glyphicon-list-alt"></i><br>Estado de Cuenta</h2>
 			<div class="col-md-10 col-md-offset-1">
 				<div>
-					<h3 class="page-title" style="float: right;"><?php print ($rowEmpre['nombre']);?></h3>
+					<h3><?php print ($rowEmpre['nombre']);?></h3>
 				</div>
 				<table class="table table-bordered" style="text-align: center; font-size: 12px">
 				  <thead>
@@ -102,20 +215,7 @@ function estado($ano, $me, $db) {
 					  </tr>
 				  </thead>
 				  <tbody>
-					<?php
-					$anoactual =  date("Y");
-					$mesacutal = date("m");
-					
-					$anoinicio = $anoactual-5;
-					$mesinicio = $mesacutal+1;
-					if($mesinicio == 13) { 
-						$mesinicio = 1; 
-						$anoinicio++; 
-					}
-					$mesfin = $mesacutal;
-					$ano = $anoinicio;
-					$anofin = $anoactual;
-					
+					<?php		
 						while($ano<=$anofin) { ?>
 						  <tr>
 						    <td> <div align="left"><strong><?php echo $ano; ?></strong></div></td>
@@ -127,7 +227,7 @@ function estado($ano, $me, $db) {
 									if ($ano == $anofin && $mes > $mesfin) { ?>
 										<td>-</td>
 						<?php		} else {
-										$descri = estado($ano,$mes,$db);
+										$descri = estado($ano,$mes);
 										if ($descri == "PAGO") { ?>
 											<td><a href="javascript:mypopup('cuentas.sabana.pagos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
@@ -137,7 +237,10 @@ function estado($ano, $me, $db) {
 										if ($descri == "P.DIF.") { ?>
 											<td><a href="javascript:mypopup('cuentas.sabana.diferidos.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
 						<?php			}
-										if (($descri == "NO PAGO") || ($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
+										if ($descri == "NO PAGO") { ?>
+											<td><a href="javascript:mypopup('cuentas.sabana.ddjj.php?nrcuit=<?php echo $nrcuit ?>&ano=<?php echo $ano ?>&mes=<?php echo $mes ?>')"><?php echo $descri ?></a></td>
+						<?php			}
+										if (($descri == "JUICI.")|| ($descri == "S.DJ.")) { ?>
 											<td><?php echo $descri ?></td>
 						<?php			}
 									}
