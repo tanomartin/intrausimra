@@ -24,15 +24,6 @@ $row = mysql_fetch_array($result);
 	<script type="text/javascript" src="include/js/jquery.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="include/js/jquery.tablesorter/jquery.tablesorter.widgets.js"></script>
-	<script>
-	function mypopup(dire) {
-		var a = document.createElement("a");
-		a.target = "_blank";
-		a.href = dire;
-		a.click();
-	}
-	</script>
-	
 	<style type="text/css" media="print">
 		.nover {display:none}
 	</style>
@@ -70,7 +61,7 @@ $row = mysql_fetch_array($result);
 						<td><?php echo $row1['totdep'] ?></td>
 						<td><?php echo $sispago ?></td>
 				<?php	if ($row1['codbar'] != null) { ?>
-							<td><a href="javascript:mypopup('cuentas.sabana.pagos.ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>&sispago=<?php echo $row1['sispag'] ?>&ano=<?php echo $ano?>&mes=<?php echo $mes?>')"><?php echo $row1['codbar'] ?></a></td>
+							<td><a target="_blank" href="cuentas.sabana.pagos.ddjj.php?nrcuit=<?php echo $nrcuit ?>&control=<?php echo $row1['codbar'] ?>&sispago=<?php echo $row1['sispag'] ?>&ano=<?php echo $ano?>&mes=<?php echo $mes?>"><?php echo $row1['codbar'] ?></a></td>
 				<?php	} 
 						else { ?>
 							<td>-</td>
