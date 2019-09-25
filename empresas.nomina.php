@@ -33,6 +33,10 @@ $cantEmp = mysql_num_rows($result);
 
 	<script>
 
+	function mypopup(dire) {
+	    mywindow = window.open(dire, '_blank');
+	}
+
 	$(function() {
 		$("#empleados")
 		.tablesorter({
@@ -76,7 +80,7 @@ $cantEmp = mysql_num_rows($result);
 								<tr>
 								<td><b><?php echo $row['nrcuil'] ?></b></td>
 								<td><?php echo $row['apelli'].", ".$row['nombre']  ?></td>
-								<td align="center"><a target="_blank" href="empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrcuit ?>"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
+								<td align="center"><a href="javascript:mypopup('empresas.nomina.ficha.php?cuil=<?php echo $row['nrcuil'] ?>&cuit=<?php echo $nrcuit ?>')"><i style="font-size: 25px"  class="glyphicon glyphicon-info-sign"></i></a></td>
 								</tr>
 					  <?php }
 					 	  } else { ?>
