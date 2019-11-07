@@ -54,21 +54,21 @@ $row = mysql_fetch_array($result);
 					if ($sispago != "L") {
 						$con = substr($control,15,14);				
 						
-						$sqlDet = "select * from ppjj where nrctrl = '$con'";
+						$sqlDet = "select * from ppjj where nrctrl = '$con' and nrcuit = $nrcuit";
 						$resDet = mysql_query($sqlDet,$db); 
 						
-						$sqlCab = "select * from validas where nrctrl = '$con'";
+						$sqlCab = "select * from validas where nrctrl = '$con' and nrcuit = $nrcuit";
 						$resCab = mysql_query($sqlCab,$db);
 						$rowCab = mysql_fetch_assoc($resCab);
 				 	} else {
 				 		$sqlDet = "select * 
 				 					FROM vinculadocu v, ppjj p 
-				 					WHERE v.referencia = '$control' and v.nrctrl = p.nrctrl and v.nrcuit = p.nrcuit and p.perano = $ano and p.permes = $mes";
+				 					WHERE v.referencia = '$control' and v.nrcuit = $nrcuit and v.nrctrl = p.nrctrl and v.nrcuit = p.nrcuit and p.perano = $ano and p.permes = $mes";
 				 		$resDet = mysql_query($sqlDet,$db);
 				 		
 				 		$sqlCab = "select *
 				 					FROM vinculadocu v, validas c
-				 					WHERE v.referencia = '$control' and v.nrctrl = c.nrctrl and v.nrcuit = c.nrcuit and c.perano = $ano and c.permes = $mes";
+				 					WHERE v.referencia = '$control' and v.nrcuit = $nrcuit and v.nrctrl = c.nrctrl and v.nrcuit = c.nrcuit and c.perano = $ano and c.permes = $mes";
 				 		$resCab = mysql_query($sqlCab,$db);
 				 		$rowCab = mysql_fetch_assoc($resCab);
 				 	}
